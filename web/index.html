@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>Sales Dashboard | babyClinic Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="assets/css/dashlite.css?ver=3.1.2">
+    <link id="skin-default" rel="stylesheet" href="assets/css/theme.css?ver=3.1.2">
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="loader-overlay" id="loader">
+        <div class="spin-loader"></div>
+    </div>
+
+    <div class="nk-app-root" style="display: block;">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar nk-sidebar-fixed is-light" data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-menu-trigger">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+                                class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                            data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                    <div class="nk-sidebar-brand">
+                        <a href="index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-img" src="./images/logo.png" alt="logo">
+                        </a>
+                    </div>
+                </div><!-- sidebar-element -->
+                <div class="nk-sidebar-element nk-sidebar-body">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item">
+                                    <a href="index.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/admins/admins.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                        <span class="nk-menu-text">Admins</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/midwives/midwives.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Midwives</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/mothers/mothers.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                        <span class="nk-menu-text">Mothers</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/babies/babies.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-happy"></em></span>
+                                        <span class="nk-menu-text">Babies</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/notices/notices.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
+                                        <span class="nk-menu-text">Notices</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/information/information.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-list-round"></em></span>
+                                        <span class="nk-menu-text">Information</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                            </ul><!-- menu -->
+                        </div><!-- sidebar-menu -->
+                    </div><!-- sidebar-content -->
+                </div><!-- sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ms-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                        class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a href="index.html" class="logo-link">
+                                    <img class="logo-light logo-img" src="./images/logo.png"
+                                        srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="./images/logo-dark.png"
+                                        srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                </a>
+                            </div><!-- header-brand -->
+
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    <li class="dropdown user-dropdown">
+                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                                <div class="user-info d-none d-md-block">
+                                                    <div class="user-status" style="color: #fff;">Administrator</div>
+                                                    <div class="user-name dropdown-indicator" style="color: #fff;">
+                                                        Sample Name</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        <span>AB</span>
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">Sample Name</span>
+                                                        <span class="sub-text">info@softnio.com</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="user-profile-regular.html"><em
+                                                                class="icon ni ni-user-alt"></em><span>View
+                                                                Profile</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign
+                                                                Out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                    <li class="dropdown notification-dropdown me-n1">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                            <div class="dropdown-head">
+                                                <span class="sub-title nk-dropdown-title">Notifications</span>
+                                                <a href="#">Mark All as Read</a>
+                                            </div>
+                                            <div class="dropdown-body">
+                                                <div class="nk-notification">
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to
+                                                                <span>Widthdrawl</span>
+                                                            </div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit
+                                                                    Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to
+                                                                <span>Widthdrawl</span>
+                                                            </div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit
+                                                                    Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to
+                                                                <span>Widthdrawl</span>
+                                                            </div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit
+                                                                    Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- notification -->
+                                            </div><!-- dropdown-body -->
+                                            <div class="dropdown-foot center">
+                                                <a href="#">View All</a>
+                                            </div>
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                </ul><!-- quick-nav -->
+                            </div><!-- header-tools -->
+                        </div><!-- header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header @e -->
+                <!-- content @s -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Dashboard</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Welcome to Baby Clinic System</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="nk-block">
+                                    <div class="row g-gs">
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                  <div class="d-flex align-items-center justify-start">
+                                                    <div class="me-3">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                      <div class="font-size-16 mt-2">Total Admins</div>
+                                                    </div>
+                                                  </div>
+                                                  <h4 class="mt-4">24</h4>
+                                                </div>
+                                              </div>
+                                        </div><!-- .col -->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                  <div class="d-flex align-items-center justify-start">
+                                                    <div class="me-3">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                      <div class="font-size-16 mt-2">Total Midwives</div>
+                                                    </div>
+                                                  </div>
+                                                  <h4 class="mt-4">24</h4>
+                                                </div>
+                                              </div>
+                                        </div><!-- .col -->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                  <div class="d-flex align-items-center justify-start">
+                                                    <div class="me-3">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                      <div class="font-size-16 mt-2">Total Mothers</div>
+                                                    </div>
+                                                  </div>
+                                                  <h4 class="mt-4">24</h4>
+                                                </div>
+                                              </div>
+                                        </div><!-- .col -->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                  <div class="d-flex align-items-center justify-start">
+                                                    <div class="me-3">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                      <div class="font-size-16 mt-2">Total Babies</div>
+                                                    </div>
+                                                  </div>
+                                                  <h4 class="mt-4">24</h4>
+                                                </div>
+                                              </div>
+                                        </div><!-- .col -->
+                                        <div class="col-md-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                  <div class="d-flex align-items-center justify-start">
+                                                    <div class="me-3">
+                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                      <div class="font-size-16 mt-2">Total Notices</div>
+                                                    </div>
+                                                  </div>
+                                                  <h4 class="mt-4">24</h4>
+                                                </div>
+                                              </div>
+                                        </div><!-- .col -->
+                                    </div><!-- .row -->
+                                </div><!-- block -->
+
+                                <div class="nk-block mb-5">
+                                    <div class="row g-gs">
+                                        <div class="col-md-12">
+                                            <div class="card card-bordered">
+                                                <div class="card-inner">
+                                                    <div id="calendar" class="nk-calendar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                <div class="nk-footer nk-footer-fixed" style="bottom: 0;">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright"> &copy; 2022 Baby Clinic System
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+
+    <div class="account-pages my-5 pt-sm-5" style="display: none;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Sign In content -->
+                <div class="col-md-8 col-lg-6 col-xl-5" id="sign-in-page">
+                    <div class="card overflow-hidden">
+                        <div class="card-body ">
+                            <div class="p-2">
+                                <div class="brand-logo " style="display: flex; justify-content: center; height: 7vh;">
+                                    <a class="logo-link nk-sidebar-logo" style="display: flex;">
+                                        <img class="logo-img" src="./images/logo.png" alt="logo">
+                                    </a>
+                                </div>
+
+                                <div class="nk-block-head-content" style="margin-bottom: 20px;">
+                                    <h5 class="nk-block-title">Sign In</h5>
+                                </div>
+
+                                <div class="sign-in-form">
+                                    <div>
+                                        <label class="form-label" for="username">Username*</label>
+                                        <input type="text" required class="form-control" id="username-login"
+                                            placeholder="Enter Username">
+                                        <div class="error-message" style="display: none; color: red;">Username is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" for="password">Password*</label>
+                                        <input type="password" required class="form-control" id="password-login"
+                                            placeholder="Enter Password">
+                                        <div class="error-message" style="display: none; color: red;">Password is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button class="btn btn-primary w-100 waves-effect waves-light justify-center"
+                                            type="button" onclick="signIn()">Sign In</button>
+                                    </div>
+                                </div>
+                                <!-- <div class="mt-4 text-center">
+                                    <p class="mb-0">By registering you agree to the <a href="#"
+                                            class="text-primary">Terms & Conditions</a></p>
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <p>Don't have an account ? <a onclick="switchToSignUp()" class="fw-medium text-primary"
+                                style="cursor: pointer;">
+                                Sign Up</a> </p>
+                        <p>©
+                            <script>document.write(new Date().getFullYear())</script> Baby Clinic System
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Sign Up content-->
+                <div class="col-md-8 col-lg-6 col-xl-5" style="display: none;" id="sign-up-page">
+                    <div class="card overflow-hidden">
+                        <div class="card-body ">
+                            <div class="p-2">
+                                <div class="brand-logo " style="display: flex; justify-content: center; height: 7vh;">
+                                    <a class="logo-link nk-sidebar-logo" style="display: flex;">
+                                        <img class="logo-img" src="./images/logo.png" alt="logo">
+                                    </a>
+                                </div>
+
+                                <div class="nk-block-head-content" style="margin-bottom: 20px;">
+                                    <h5 class="nk-block-title">Sign Up</h5>
+                                </div>
+
+                                <div class="sign-up-form">
+
+                                    <div id="first">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="useremail">Name</label>
+                                            <input type="text" required class="form-control" id="useremail"
+                                                placeholder="Enter email">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="username">NIC</label>
+                                            <input type="text" class="form-control" id="username"
+                                                placeholder="Enter NIC">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Birthday</label>
+                                            <input type="date" class="form-control" id="userpassword"
+                                                placeholder="Enter Birthday">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Email</label>
+                                            <input type="email" class="form-control" id="userpassword"
+                                                placeholder="Enter Email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Phone Number</label>
+                                            <input type="text" class="form-control" id="userpassword"
+                                                placeholder="Enter Phone Number">
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <button
+                                                class="btn btn-primary w-100 waves-effect waves-light justify-center"
+                                                type="submit" onclick="next()">Next</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="second" style="display: none;">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="useremail">Address</label>
+                                            <input type="text" required class="form-control" id="useremail"
+                                                placeholder="Enter Address">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="username">Husband Name</label>
+                                            <input type="text" class="form-control" id="username"
+                                                placeholder="Enter Husband Name">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Husband Phone Number</label>
+                                            <input type="text" class="form-control" id="userpassword"
+                                                placeholder="Enter Husband Phone Number">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Username</label>
+                                            <input type="text" class="form-control" id="userpassword"
+                                                placeholder="Enter Username">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">Password</label>
+                                            <input type="password" class="form-control" id="userpassword"
+                                                placeholder="Enter password">
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <button
+                                                class="btn btn-primary w-100 waves-effect waves-light justify-center"
+                                                type="submit">Register</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="mt-4 text-center">
+                                        <p class="mb-0">By registering you agree to the <a href="#"
+                                                class="text-primary">Terms & Conditions</a></p>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <p>Already have an account ? <a onclick="switchToSignIn()" class="fw-medium text-primary"
+                                style="cursor: pointer;">
+                                Login</a> </p>
+                        <p>©
+                            <script>document.write(new Date().getFullYear())</script> Baby Clinic System
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- app-root @e -->
+    <!-- JavaScript -->
+    <script src="./assets/js/bundle.js?ver=3.1.2"></script>
+    <script src="./assets/js/scripts.js?ver=3.1.2"></script>
+    <script src="./assets/js/charts/gd-default.js?ver=3.1.2"></script>
+    <script src="./assets/js/fullcalendar.js"></script>
+    <script src="./assets/js/calendar.js"></script>
+    <script src="./assets/js/auth.js"></script>
+</body>
+
+</html>

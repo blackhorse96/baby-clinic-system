@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>Sales Dashboard | babyClinic Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="assets/css/dashlite.css?ver=3.1.2">
+    <link id="skin-default" rel="stylesheet" href="assets/css/theme.css?ver=3.1.2">
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="loader-overlay" id="loader">
+        <div class="spin-loader"></div>
+    </div>
+
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar nk-sidebar-fixed is-light" data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-menu-trigger">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+                                class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                            data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                    <div class="nk-sidebar-brand">
+                        <a href="index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-img" src="./images/logo.png" alt="logo">
+                        </a>
+                    </div>
+                </div><!-- sidebar-element -->
+                <div class="nk-sidebar-element nk-sidebar-body">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item">
+                                    <a href="index.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/admins/admins.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                        <span class="nk-menu-text">Admins</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/midwives/midwives.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Midwives</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/mothers/mothers.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                        <span class="nk-menu-text">Mothers</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/babies/babies.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-happy"></em></span>
+                                        <span class="nk-menu-text">Babies</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/notices/notices.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
+                                        <span class="nk-menu-text">Notices</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/information/information.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-list-round"></em></span>
+                                        <span class="nk-menu-text">Information</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                            </ul><!-- menu -->
+                        </div><!-- sidebar-menu -->
+                    </div><!-- sidebar-content -->
+                </div><!-- sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ms-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                        class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a href="index.html" class="logo-link">
+                                    <img class="logo-light logo-img" src="./images/logo.png"
+                                        srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="./images/logo-dark.png"
+                                        srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                </a>
+                            </div><!-- header-brand -->
+
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    <li class="dropdown user-dropdown">
+                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                                <div class="user-info d-none d-md-block">
+                                                    <div class="user-status" style="color: #fff;">Administrator</div>
+                                                    <div class="user-name dropdown-indicator" style="color: #fff;">
+                                                        Sample Name</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        <span>AB</span>
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">Sample Name</span>
+                                                        <span class="sub-text">info@softnio.com</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="user-profile-regular.html"><em
+                                                                class="icon ni ni-user-alt"></em><span>View
+                                                                Profile</span></a></li>
+                                                    <li><a href="user-profile-setting.html"><em
+                                                                class="icon ni ni-setting-alt"></em><span>Account
+                                                                Setting</span></a></li>
+                                                    <li><a href="user-profile-activity.html"><em
+                                                                class="icon ni ni-activity-alt"></em><span>Login
+                                                                Activity</span></a></li>
+                                                    <li><a class="dark-switch" href="#"><em
+                                                                class="icon ni ni-moon"></em><span>Dark Mode</span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign
+                                                                out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                    <li class="dropdown notification-dropdown me-n1">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                            <div class="dropdown-head">
+                                                <span class="sub-title nk-dropdown-title">Notifications</span>
+                                                <a href="#">Mark All as Read</a>
+                                            </div>
+                                            <div class="dropdown-body">
+                                                <div class="nk-notification">
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to
+                                                                <span>Widthdrawl</span>
+                                                            </div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit
+                                                                    Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to
+                                                                <span>Widthdrawl</span>
+                                                            </div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit
+                                                                    Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">You have requested to
+                                                                <span>Widthdrawl</span>
+                                                            </div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="nk-notification-item dropdown-inner">
+                                                        <div class="nk-notification-icon">
+                                                            <em
+                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                        </div>
+                                                        <div class="nk-notification-content">
+                                                            <div class="nk-notification-text">Your <span>Deposit
+                                                                    Order</span> is placed</div>
+                                                            <div class="nk-notification-time">2 hrs ago</div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- notification -->
+                                            </div><!-- dropdown-body -->
+                                            <div class="dropdown-foot center">
+                                                <a href="#">View All</a>
+                                            </div>
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                </ul><!-- quick-nav -->
+                            </div><!-- header-tools -->
+                        </div><!-- header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header @e -->
+                <!-- content @s -->
+
+                <div class="nk-content">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <!-- Babies List -->
+                            <div class="nk-content-body" id="babies-list">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Babies</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>List of all babies</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                                    data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
+                                                                data-bs-target="#createNewBabyPopup"
+                                                                class="btn btn-primary"><span>+ New Baby</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="nk-block nk-block-lg">
+                                    <div class="card card-bordered card-preview">
+                                        <div class="card-inner">
+                                            <table class="datatable-init-export table nowrap" data-export-title="Export"
+                                                data-auto-responsive="false">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span class="sub-text">#</span></th>
+                                                        <th><span class="sub-text">Name</span></th>
+                                                        <th><span class="sub-text">Birthday</span></th>
+                                                        <th><span class="sub-text">Gender</span></th>
+                                                        <th><span class="sub-text">Mother Name</span></th>
+                                                        <th><span class="sub-text">Actions</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="babies-table-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .card-preview -->
+                                </div> <!-- nk-block -->
+                            </div>
+
+                            <!-- Single baby height and weight -->
+                            <div class="nk-content-body" style="display: none;" id="single-baby-height-weight">
+                                <div class="nk-block-head nk-block-head-sm" style="margin-bottom: 30px;">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Baby Height and Weight</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Details of baby height and weight</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                                    data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
+                                                                data-bs-target="#createNewHeightWeightPopup"
+                                                                class="btn btn-primary"><span>+ New </span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="row" style="margin-bottom: 30px; margin-top: 30px;">
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <a href="#" class="btn btn-primary"><em
+                                                        class="icon ni ni-back-ios"></em></a>
+                                                <span style="margin: 0px 10px; font-size: large;">2023</span>
+                                                <a href="#" class="btn btn-primary"><em
+                                                        class="icon ni ni-forward-ios"></em></a>
+
+                                                <div style="margin-top: 20px;" id="height-line-chart"
+                                                    class="apex-charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <a href="#" class="btn btn-primary"><em
+                                                        class="icon ni ni-back-ios"></em></a>
+                                                <span style="margin: 0px 10px; font-size: large;">2023</span>
+                                                <a href="#" class="btn btn-primary"><em
+                                                        class="icon ni ni-forward-ios"></em></a>
+
+                                                <div style="margin-top: 20px;" id="weight-line-chart"
+                                                    class="apex-charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nk-block nk-block-lg">
+                                    <div class="card card-bordered card-preview">
+                                        <div class="card-inner">
+                                            <table class="datatable-init-export table nowrap" data-export-title="Export"
+                                                data-auto-responsive="false">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span class="sub-text">#</span></th>
+                                                        <th><span class="sub-text">Date</span></th>
+                                                        <th><span class="sub-text">Height (cm)</span></th>
+                                                        <th><span class="sub-text">Weight (Kg)</span></th>
+                                                        <th><span class="sub-text">Actions</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="baby-height-weight-table-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .card-preview -->
+                                </div> <!-- nk-block -->
+                            </div>
+
+                            <!-- Single baby vaccine -->
+                            <div class="nk-content-body" style="display: none;" id="single-baby-vaccine">
+                                <div class="nk-block-head nk-block-head-sm" style="margin-bottom: 30px;">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Baby Vaccine</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Details of baby vaccines</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                                    data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
+                                                                data-bs-target="#createNewVaccinePopup"
+                                                                class="btn btn-primary"><span>+ New Vaccine</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="nk-block nk-block-lg">
+                                    <div class="card card-bordered card-preview">
+                                        <div class="card-inner">
+                                            <table class="datatable-init-export table nowrap" data-export-title="Export"
+                                                data-auto-responsive="false">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span class="sub-text">#</span></th>
+                                                        <th><span class="sub-text">Age</span></th>
+                                                        <th><span class="sub-text">Type of Vaccine</span></th>
+                                                        <th><span class="sub-text">Date</span></th>
+                                                        <th><span class="sub-text">Status</span></th>
+                                                        <th><span class="sub-text">Actions</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="baby-vaccine-table-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .card-preview -->
+                                </div> <!-- nk-block -->
+                            </div>
+
+                            <!-- Single baby clinic -->
+                            <div class="nk-content-body" style="display: none;" id="single-baby-clinic">
+                                <div class="nk-block-head nk-block-head-sm" style="margin-bottom: 30px;">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Baby Clinics</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Details of baby clinics</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                                    data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
+                                                                data-bs-target="#createNewClinicPopup"
+                                                                class="btn btn-primary"><span>+ New Clinic</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="nk-block nk-block-lg">
+                                    <div class="card card-bordered card-preview">
+                                        <div class="card-inner">
+                                            <table class="datatable-init-export table nowrap" data-export-title="Export"
+                                                data-auto-responsive="false">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span class="sub-text">#</span></th>
+                                                        <th><span class="sub-text">Date</span></th>
+                                                        <th><span class="sub-text">Visit Type</span></th>
+                                                        <th><span class="sub-text">Status</span></th>
+                                                        <th><span class="sub-text">Actions</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="baby-clinic-table-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .card-preview -->
+                                </div> <!-- nk-block -->
+                            </div>
+
+                            <!-- Single baby growth -->
+                            <div class="nk-content-body" style="display: none;" id="single-baby-growth">
+                                <div class="nk-block-head nk-block-head-sm" style="margin-bottom: 30px;">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Baby Growth</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>Details of baby growth</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                                    data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
+                                                                data-bs-target="#createNewGrowthPopup"
+                                                                class="btn btn-primary"><span>+ New Growth</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="nk-block nk-block-lg">
+                                    <div class="card card-bordered card-preview">
+                                        <div class="card-inner">
+                                            <table class="datatable-init-export table nowrap" data-export-title="Export"
+                                                data-auto-responsive="false">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span class="sub-text">#</span></th>
+                                                        <th><span class="sub-text">Details of Growth</span></th>
+                                                        <th><span class="sub-text">Normal Age Gap (Month)</span></th>
+                                                        <th><span class="sub-text">Completed Month</span></th>
+                                                        <th><span class="sub-text">Actions</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="baby-growth-table-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .card-preview -->
+                                </div> <!-- nk-block -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                <div class="nk-footer nk-footer-fixed">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright"> &copy; 2022 Baby Clinic System
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+
+    <!-- Create New baby popup -->
+    <div class="modal fade" id="createNewBabyPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Baby</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="form-validates">
+                    <div class="modal-body">
+
+                        <div class="row g-gs">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Name*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Name" id="baby-name"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Birthday*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="date" class="form-control" placeholder="Enter Birthday"
+                                            id="baby-birthday" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Birth Time*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="time" class="form-control" placeholder="Enter Birth Time"
+                                            id="baby-birth-time" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Birth Weight*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" placeholder="Enter Birth Weight"
+                                            id="baby-birth-weight" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Birth Height*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" placeholder="Enter Birth Height"
+                                            id="baby-birth-height" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Gender*</label>
+                                    <div class="d-flex justify-start">
+                                        <div class="form-check" style="margin-right: 10px;">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="male" checked>
+                                            <label class="form-check-label" for="male">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="female">
+                                            <label class="form-check-label" for="female">
+                                                Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" style="display: none; color: red;">This field is required</div>
+                                    <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Register Date*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="date" class="form-control" placeholder="Enter Register Date"
+                                            id="baby-register-date" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">MOH Division*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter MOH Division"
+                                            id="baby-moh" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Division*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Division"
+                                            id="baby-division" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Apgar Score*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" placeholder="Enter Apgar Score"
+                                            id="baby-apgar-score" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Hospital*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Hospital"
+                                            id="baby-hospital" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Health Division*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Health Division"
+                                            id="baby-health-division" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Mother NIC Number*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Mother NIC Number"
+                                            id="baby-mother-nic" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <button type="button" onclick="getMother()" class="btn btn-primary text-end">Get Mother
+                                    Details</button>
+                                <button type="button" onclick="resetMother()" class="btn btn-warning text-end">Reset</button>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Mother Email*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" readonly
+                                            placeholder="Enter Mother Email" id="baby-mother-email" disabled required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babySubmit()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create New baby height weight popup -->
+    <div class="modal fade" id="createNewHeightWeightPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 30%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Height and Weight</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="baby-height-weight-form">
+                    <div class="modal-body">
+
+                        <div class="row g-gs">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Date*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="date" class="form-control" placeholder="Enter Date" id="baby-height-weight-date"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Height*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" placeholder="Enter Height"
+                                            id="baby-height" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Weight*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" placeholder="Enter Weight"
+                                            id="baby-weight" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babyHeightWeightSubmit()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create New baby vaccine popup -->
+    <div class="modal fade" id="createNewVaccinePopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 30%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Vaccine</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="baby-vaccine-form">
+                    <div class="modal-body">
+
+                        <div class="row g-gs">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Age*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Age" id="baby-vaccine-age"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Type of Vaccine*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Vaccine Name"
+                                            id="baby-vaccine-name" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Date*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="date" class="form-control" placeholder="Enter Date"
+                                            id="baby-weight" required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-select js-select2" required id="baby-vaccine-status">
+                                            <option value="PENDING">Pending</option>
+                                            <option value="COMPLETED">Completed</option>
+                                        </select>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babyVaccineSubmit()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create New baby clinic popup -->
+    <div class="modal fade" id="createNewClinicPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 30%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Clinic</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="baby-clinic-form">
+                    <div class="modal-body">
+
+                        <div class="row g-gs">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Date*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="date" class="form-control" placeholder="Enter Date" id="baby-clinic-date"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Visit Type</label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-select js-select2" required id="baby-clinic-visit">
+                                            <option value="BABY_VISIT">Baby Visit</option>
+                                            <option value="MIDWIFE_VISIT">Midwife Visit</option>
+                                        </select>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-select js-select2" required id="baby-vaccine-status">
+                                            <option value="PENDING">Pending</option>
+                                            <option value="VISITED">Visited</option>
+                                        </select>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babyClinicSubmit()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create New baby growth popup -->
+    <div class="modal fade" id="createNewGrowthPopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 30%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Clinic</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="baby-growth-form">
+                    <div class="modal-body">
+
+                        <div class="row g-gs">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Details*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Details" id="baby-growth-detail"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Age Gap*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control" placeholder="Enter Age Gap" id="baby-growth-age"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Completed Month*</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" placeholder="Enter Completed Month" id="baby-growth-month"
+                                            required>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babyGrowthSubmit()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="./assets/js/bundle.js?ver=3.1.2"></script>
+    <script src="./assets/js/scripts.js?ver=3.1.2"></script>
+    <script src="./assets/js/libs/datatable-btns.js?ver=3.1.2"></script>
+    <script src="./assets/js/charts/apexcharts.min.js"></script>
+    <script src="pages/babies/babies.js"></script>
+    <script src="pages/babies/validations.js"></script>
+    <script src="pages/babies/baby-height-weight.js"></script>
+    <script src="pages/babies/baby-vaccines.js"></script>
+    <script src="pages/babies/baby-clinic.js"></script>
+    <script src="pages/babies/baby-growth.js"></script>
+</body>
+
+</html>
