@@ -157,7 +157,7 @@ $sql_babies_clinics = "CREATE TABLE IF NOT EXISTS babies_clinics (
     FOREIGN KEY (baby_id) REFERENCES babies(id)
 )";
 
-if ($conn->query($sql_babies_vaccines) === TRUE) {
+if ($conn->query($sql_babies_clinics) === TRUE) {
     echo "Babies clinics table created successfully.<br>";
 } else {
     echo "Error creating babies clinics table: " . $conn->error . "<br>";
@@ -173,10 +173,24 @@ $sql_babies_growths = "CREATE TABLE IF NOT EXISTS babies_growths (
     FOREIGN KEY (baby_id) REFERENCES babies(id)
 )";
 
-if ($conn->query($sql_babies_vaccines) === TRUE) {
+if ($conn->query($sql_babies_growths) === TRUE) {
     echo "Babies growths table created successfully.<br>";
 } else {
     echo "Error creating babies growths table: " . $conn->error . "<br>";
+}
+
+// Create notices table
+$sql_notices = "CREATE TABLE IF NOT EXISTS notices (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    date DATE NOT NULL
+)";
+
+if ($conn->query($sql_notices) === TRUE) {
+    echo "Notices table created successfully.<br>";
+} else {
+    echo "Error creating notices table: " . $conn->error . "<br>";
 }
 
 // Add super admin user credentials

@@ -3,6 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
@@ -32,21 +33,18 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
     // Validate input fields
+    $username = isset($data->username) ? trim($data->username) : '';
+    $password = isset($data->password) ? trim($data->password) : '';
     $name = isset($data->name) ? trim($data->name) : '';
     $nic = isset($data->nic) ? trim($data->nic) : '';
     $birthday = isset($data->birthday) ? trim($data->birthday) : '';
     $email = isset($data->email) ? trim($data->email) : '';
     $phone_number = isset($data->phone_number) ? trim($data->phone_number) : '';
     $address = isset($data->address) ? trim($data->address) : '';
-    $husband_name = isset($data->husband_name) ? trim($data->husband_name) : '';
-    $husband_phone_number = isset($data->husband_phone_number) ? trim($data->husband_phone_number) : '';
-    $username = isset($data->username) ? trim($data->username) : '';
-    $password = isset($data->password) ? trim($data->password) : '';
 
     if (
-        empty($name) || empty($nic) || empty($birthday) || empty($email)
-        || empty($phone_number) || empty($address) || empty($husband_name)
-        || empty($husband_phone_number) || empty($username) || empty($password)
+        empty($username) || empty($password) || empty($name) || empty($nic)
+        || empty($birthday) || empty($email) || empty($phone_number) || empty($address)
     ) {
         $returnData = msg(0, 422, 'Please Fill in all Required Fields!');
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -57,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $returnData = msg(0, 422, 'Your username must be at least 3 characters long!');
     } else {
         try {
-            $stmt = $conn->prepare("SELECT * FROM `users_credentials` WHERE `username` IN (?)");
+            $stmt = $conn->prepare("SELECT * FROM `users_credentials` WHERE `username` = ?");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
@@ -69,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $stmt->close();
 
                 // Insert into users_credentials table
-                $role = Role::MOTHER;
+                $role = Role::ADMIN;
                 $insert_credentials_query = "INSERT INTO users_credentials (username, password, role) VALUES (?, ?, ?)";
                 $insert_credentials_stmt = $conn->prepare($insert_credentials_query);
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -77,13 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $insert_credentials_stmt->execute();
                 $user_id = $insert_credentials_stmt->insert_id;
 
-                // Insert into mothers table
-                $insert_mother_query = "INSERT INTO mothers (name, nic, birthday, email, phone_number, address, husband_name, husband_phone_number, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                $insert_mother_stmt = $conn->prepare($insert_mother_query);
-                $insert_mother_stmt->bind_param("ssssssssi", $name, $nic, $birthday, $email, $phone_number, $address, $husband_name, $husband_phone_number, $user_id);
-                $insert_mother_stmt->execute();
+                // Insert into admins table
+                $insert_admins_query = "INSERT INTO admins (name, nic, birthday, phone_number, email, address, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $insert_admins_stmt = $conn->prepare($insert_admins_query);
+                $insert_admins_stmt->bind_param("ssssssi", $name, $nic, $birthday, $phone_number, $email, $address, $user_id);
+                $insert_admins_stmt->execute();
 
-                $returnData = msg(1, 201, 'You have successfully registered as a mother.');
+                $returnData = msg(1, 201, 'Admin created successfully.');
             }
         } catch (Exception $e) {
             $returnData = msg(0, 500, $e->getMessage());

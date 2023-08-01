@@ -30,17 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] != "GET") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
     try {
-        $sql_get_mothers = "SELECT m.*, u.username, u.role FROM mothers m INNER JOIN users_credentials u ON m.user_id = u.id";
-        $result = $conn->query($sql_get_mothers);
+        // Retrieve all admins with their corresponding user credentials.
+        $sql_get_admins = "SELECT a.*, u.username, u.role FROM admins a INNER JOIN users_credentials u ON a.user_id = u.id";
+        $result = $conn->query($sql_get_admins);
 
         if ($result->num_rows > 0) {
-            $mothers = [];
+            $admins = array();
             while ($row = $result->fetch_assoc()) {
-                $mothers[] = $row;
+                $admins[] = $row;
             }
-            $returnData = msg(1, 200, 'Success', ['mothers' => $mothers]);
+            $returnData = msg(1, 200, 'Success', ['admins' => $admins]);
         } else {
-            $returnData = msg(0, 200, 'No mothers found.');
+            $returnData = msg(0, 404, 'No admins found.');
         }
     } catch (Exception $e) {
         $returnData = msg(0, 500, $e->getMessage());

@@ -13,6 +13,7 @@
     <!-- Page Title  -->
     <title>Sales Dashboard | babyClinic Admin Template</title>
     <!-- StyleSheets  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashlite.css?ver=3.1.2">
     <link id="skin-default" rel="stylesheet" href="assets/css/theme.css?ver=3.1.2">
 </head>
@@ -329,6 +330,8 @@
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewHeightWeightPopup"
                                                                 class="btn btn-primary"><span>+ New </span></a></li>
+                                                        <li class="nk-block-tools-opt"><a onclick="downloadPdf()"
+                                                                class="btn btn-primary"><span>+ Download </span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -368,7 +371,7 @@
                                 <div class="nk-block nk-block-lg">
                                     <div class="card card-bordered card-preview">
                                         <div class="card-inner">
-                                            <table class="datatable-init-export table nowrap" data-export-title="Export"
+                                            <table class="datatable-init table nowrap" data-export-title="Export"
                                                 data-auto-responsive="false">
                                                 <thead>
                                                     <tr>
@@ -383,6 +386,25 @@
                                                 <tbody id="baby-height-weight-table-body">
                                                 </tbody>
                                             </table>
+
+                                            <!-- This is for download as a PDF -->
+                                            <div id="baby-h-w-table" style="display: none;">
+                                                <h1 style="text-align: center; margin-bottom: 50px;">Baby Details</h1>
+                                                <div class="row">
+
+                                                </div>
+                                                <table class="table table-tranx">
+                                                    <thead>
+                                                        <tr class="tb-tnx-head">
+                                                            <th><span class="sub-text">#</span></th>
+                                                            <th><span class="sub-text">Date</span></th>
+                                                            <th><span class="sub-text">Height (cm)</span></th>
+                                                            <th><span class="sub-text">Weight (Kg)</span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="baby-height-weight-table-body-pdf"></tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div><!-- .card-preview -->
                                 </div> <!-- nk-block -->
@@ -632,14 +654,14 @@
                                     <div class="d-flex justify-start">
                                         <div class="form-check" style="margin-right: 10px;">
                                             <input class="form-check-input" type="radio" name="gender"
-                                                id="male" checked>
+                                                id="male" checked value="Male">
                                             <label class="form-check-label" for="male">
                                                 Male
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="gender"
-                                                id="female">
+                                                id="female" value="female">
                                             <label class="form-check-label" for="female">
                                                 Female
                                             </label>

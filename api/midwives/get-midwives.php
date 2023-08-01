@@ -30,17 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] != "GET") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
     try {
-        $sql_get_mothers = "SELECT m.*, u.username, u.role FROM mothers m INNER JOIN users_credentials u ON m.user_id = u.id";
-        $result = $conn->query($sql_get_mothers);
+        // Retrieve all midwives with their corresponding user credentials.
+        $sql_get_midwives = "SELECT m.*, u.username, u.role FROM midwives m INNER JOIN users_credentials u ON m.user_id = u.id";
+        $result = $conn->query($sql_get_midwives);
 
         if ($result->num_rows > 0) {
-            $mothers = [];
+            $midwives = array();
             while ($row = $result->fetch_assoc()) {
-                $mothers[] = $row;
+                $midwives[] = $row;
             }
-            $returnData = msg(1, 200, 'Success', ['mothers' => $mothers]);
+            $returnData = msg(1, 200, 'Success', ['midwives' => $midwives]);
         } else {
-            $returnData = msg(0, 200, 'No mothers found.');
+            $returnData = msg(0, 200, 'No midwives found.');
         }
     } catch (Exception $e) {
         $returnData = msg(0, 500, $e->getMessage());

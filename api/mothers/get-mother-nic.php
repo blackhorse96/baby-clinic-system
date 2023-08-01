@@ -4,7 +4,6 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header("Access-Control-Allow-Methods: GET, POST");
 header("Content-Type: application/json; charset=UTF-8");
 
-require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
 
 $servername = "localhost";
@@ -24,26 +23,32 @@ function msg($success, $status, $message, $extra = [])
     ], $extra);
 }
 
+// DATA FORM REQUEST
 $returnData = [];
 
 if ($_SERVER["REQUEST_METHOD"] != "GET") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
-    try {
-        $sql_get_mothers = "SELECT m.*, u.username, u.role FROM mothers m INNER JOIN users_credentials u ON m.user_id = u.id";
-        $result = $conn->query($sql_get_mothers);
+    if (!isset($_GET['nic'])) {
+        $returnData = msg(0, 400, 'Missing nic parameter.');
+    } else {
+        $nic = $_GET['nic'];
+        try {
+            $stmt = $conn->prepare("SELECT * FROM mothers WHERE nic = ?");
+            $stmt->bind_param("s", $nic);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $mother = $result->fetch_assoc();
+            $stmt->close();
 
-        if ($result->num_rows > 0) {
-            $mothers = [];
-            while ($row = $result->fetch_assoc()) {
-                $mothers[] = $row;
+            if ($mother) {
+                $returnData = msg(1, 200, 'Success', ['mother' => $mother]);
+            } else {
+                $returnData = msg(0, 404, 'Mother not found.');
             }
-            $returnData = msg(1, 200, 'Success', ['mothers' => $mothers]);
-        } else {
-            $returnData = msg(0, 200, 'No mothers found.');
+        } catch (Exception $e) {
+            $returnData = msg(0, 500, $e->getMessage());
         }
-    } catch (Exception $e) {
-        $returnData = msg(0, 500, $e->getMessage());
     }
 }
 
