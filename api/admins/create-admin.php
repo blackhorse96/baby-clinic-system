@@ -7,23 +7,9 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
+require_once __DIR__ . '/../Classes/utils.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "baby_clinic_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-function msg($success, $status, $message, $extra = [])
-{
-    return array_merge([
-        'success' => $success,
-        'status' => $status,
-        'message' => $message
-    ], $extra);
-}
+$conn = (new DBConnection())->db();
 
 // DATA FORM REQUEST
 $data = json_decode(file_get_contents("php://input"));

@@ -1,18 +1,9 @@
 <?php
 require '../Enums/Role.php';
+require_once __DIR__ . '/../Classes/Database.php';
+require_once __DIR__ . '/../Classes/utils.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "baby_clinic_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = (new DBConnection())->db();
 
 // Create users credentials table
 $roles = [Role::SUPER_ADMIN, Role::ADMIN, Role::MIDWIFE, Role::MOTHER];
