@@ -1,3 +1,5 @@
+let babyId = -1;
+
 $(document).ready(function () {
   console.log(getToken)
   if (!getToken) {
@@ -132,7 +134,7 @@ function deleteBaby(babyId) {
 function viewBaby() {}
 
 function babyHeightWeightPageLoad(id) {
-    console.log("Button clicked for ID:", id);
+  babyId = id;
   $('#loader').show();
   setTimeout(() => {
     $('#loader').hide()
@@ -141,7 +143,8 @@ function babyHeightWeightPageLoad(id) {
   $("#single-baby-height-weight").show();
 }
 
-function babyClinicPageLoad() {
+function babyClinicPageLoad(id) {
+  babyId = id;
     $('#loader').show();
   setTimeout(() => {
     $('#loader').hide()
@@ -152,6 +155,7 @@ function babyClinicPageLoad() {
 }
 
 function babyVaccinePageLoad(id) {
+  babyId = id;
     $('#loader').show();
   setTimeout(() => {
     $('#loader').hide()
@@ -162,6 +166,7 @@ function babyVaccinePageLoad(id) {
 }
 
 function babyGrowthPageLoad(id) {
+  babyId = id;
     $('#loader').show();
   setTimeout(() => {
     $('#loader').hide()
