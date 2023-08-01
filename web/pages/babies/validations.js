@@ -73,7 +73,7 @@ function babySubmit() {
 };
 
 async function createBaby(babyData) {
-    console.log(babyData, 'baby data');
+    $('#loader').show();
     const url = `${baseURL}/babies/create-baby.php`;
     try {
         const response = await fetch(url, {
