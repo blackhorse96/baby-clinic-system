@@ -22,7 +22,7 @@
         <div class="spin-loader"></div>
     </div>
 
-    <div class="nk-app-root" style="display: block;">
+    <div class="nk-app-root" id="dashboard" style="display: none;">
         <!-- main @s -->
         <div class="nk-main ">
             <!-- sidebar @s -->
@@ -147,7 +147,8 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign
+                                                    <li><a onclick="signOut()"><em
+                                                                class="icon ni ni-signout"></em><span>Sign
                                                                 Out</span></a></li>
                                                 </ul>
                                             </div>
@@ -267,77 +268,82 @@
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                  <div class="d-flex align-items-center justify-start">
-                                                    <div class="me-3">
-                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    <div class="d-flex align-items-center justify-start">
+                                                        <div class="me-3">
+                                                            <span class="nk-menu-icon"><em
+                                                                    class="icon ni ni-users"></em></em></span>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <div class="font-size-16 mt-2">Total Admins</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex-1">
-                                                      <div class="font-size-16 mt-2">Total Admins</div>
-                                                    </div>
-                                                  </div>
-                                                  <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4">24</h4>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </div><!-- .col -->
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                  <div class="d-flex align-items-center justify-start">
-                                                    <div class="me-3">
-                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    <div class="d-flex align-items-center justify-start">
+                                                        <div class="me-3">
+                                                            <span class="nk-menu-icon"><em
+                                                                    class="icon ni ni-users"></em></em></span>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <div class="font-size-16 mt-2">Total Midwives</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex-1">
-                                                      <div class="font-size-16 mt-2">Total Midwives</div>
-                                                    </div>
-                                                  </div>
-                                                  <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4">24</h4>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </div><!-- .col -->
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                  <div class="d-flex align-items-center justify-start">
-                                                    <div class="me-3">
-                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    <div class="d-flex align-items-center justify-start">
+                                                        <div class="me-3">
+                                                            <span class="nk-menu-icon"><em
+                                                                    class="icon ni ni-users"></em></em></span>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <div class="font-size-16 mt-2">Total Mothers</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex-1">
-                                                      <div class="font-size-16 mt-2">Total Mothers</div>
-                                                    </div>
-                                                  </div>
-                                                  <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4">24</h4>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </div><!-- .col -->
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                  <div class="d-flex align-items-center justify-start">
-                                                    <div class="me-3">
-                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    <div class="d-flex align-items-center justify-start">
+                                                        <div class="me-3">
+                                                            <span class="nk-menu-icon"><em
+                                                                    class="icon ni ni-users"></em></em></span>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <div class="font-size-16 mt-2">Total Babies</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex-1">
-                                                      <div class="font-size-16 mt-2">Total Babies</div>
-                                                    </div>
-                                                  </div>
-                                                  <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4">24</h4>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </div><!-- .col -->
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                  <div class="d-flex align-items-center justify-start">
-                                                    <div class="me-3">
-                                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                                    <div class="d-flex align-items-center justify-start">
+                                                        <div class="me-3">
+                                                            <span class="nk-menu-icon"><em
+                                                                    class="icon ni ni-users"></em></em></span>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <div class="font-size-16 mt-2">Total Notices</div>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex-1">
-                                                      <div class="font-size-16 mt-2">Total Notices</div>
-                                                    </div>
-                                                  </div>
-                                                  <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4">24</h4>
                                                 </div>
-                                              </div>
+                                            </div>
                                         </div><!-- .col -->
                                     </div><!-- .row -->
                                 </div><!-- block -->
@@ -374,7 +380,7 @@
         <!-- main @e -->
     </div>
 
-    <div class="account-pages my-5 pt-sm-5" style="display: none;">
+    <div class="account-pages my-5 pt-sm-5" id="auth" style="display: none;">
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Sign In content -->
@@ -395,7 +401,7 @@
                                 <div class="sign-in-form">
                                     <div>
                                         <label class="form-label" for="username">Username*</label>
-                                        <input type="text" required class="form-control" id="username-login"
+                                        <input type="text" required class="form-control" id="login-username"
                                             placeholder="Enter Username">
                                         <div class="error-message" style="display: none; color: red;">Username is
                                             required</div>
@@ -404,7 +410,7 @@
 
                                     <div class="mb-3">
                                         <label class="form-label" for="password">Password*</label>
-                                        <input type="password" required class="form-control" id="password-login"
+                                        <input type="password" required class="form-control" id="login-password"
                                             placeholder="Enter Password">
                                         <div class="error-message" style="display: none; color: red;">Password is
                                             required</div>
@@ -454,30 +460,30 @@
 
                                     <div id="first">
                                         <div class="mb-3">
-                                            <label class="form-label" for="useremail">Name</label>
-                                            <input type="text" required class="form-control" id="useremail"
-                                                placeholder="Enter email">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" required class="form-control" id="register-name"
+                                                placeholder="Enter Name">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="username">NIC</label>
-                                            <input type="text" class="form-control" id="username"
+                                            <label class="form-label">NIC</label>
+                                            <input type="text" class="form-control" id="register-nic"
                                                 placeholder="Enter NIC">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Birthday</label>
-                                            <input type="date" class="form-control" id="userpassword"
+                                            <label class="form-label">Birthday</label>
+                                            <input type="date" class="form-control" id="register-birthday"
                                                 placeholder="Enter Birthday">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Email</label>
-                                            <input type="email" class="form-control" id="userpassword"
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="register-email"
                                                 placeholder="Enter Email">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Phone Number</label>
-                                            <input type="text" class="form-control" id="userpassword"
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="text" class="form-control" id="register-phone"
                                                 placeholder="Enter Phone Number">
                                         </div>
 
@@ -490,37 +496,37 @@
 
                                     <div id="second" style="display: none;">
                                         <div class="mb-3">
-                                            <label class="form-label" for="useremail">Address</label>
-                                            <input type="text" required class="form-control" id="useremail"
+                                            <label class="form-label">Address</label>
+                                            <input type="text" required class="form-control" id="register-address"
                                                 placeholder="Enter Address">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="username">Husband Name</label>
-                                            <input type="text" class="form-control" id="username"
+                                            <label class="form-label">Husband Name</label>
+                                            <input type="text" class="form-control" id="register-husband-name"
                                                 placeholder="Enter Husband Name">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Husband Phone Number</label>
-                                            <input type="text" class="form-control" id="userpassword"
+                                            <label class="form-label">Husband Phone Number</label>
+                                            <input type="text" class="form-control" id="register-husband-phone"
                                                 placeholder="Enter Husband Phone Number">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Username</label>
-                                            <input type="text" class="form-control" id="userpassword"
+                                            <label class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="register-username"
                                                 placeholder="Enter Username">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword"
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="register-password"
                                                 placeholder="Enter password">
                                         </div>
 
                                         <div class="mt-4">
                                             <button
                                                 class="btn btn-primary w-100 waves-effect waves-light justify-center"
-                                                type="submit">Register</button>
+                                                type="button" onclick="signUp()">Register</button>
                                         </div>
                                     </div>
 

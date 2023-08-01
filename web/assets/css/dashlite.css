@@ -41535,5 +41535,12 @@ body.dark-mode.nk-body.ui-softy, body.dark-mode.nk-body.ui-shady {
   display: none !important;
 }
 
+li {
+  cursor: pointer !important;
+}
+
+a {
+  cursor: pointer !important;
+}
 
 /*! END @iO */

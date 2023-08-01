@@ -1,3 +1,10 @@
+$(document).ready(function() {
+    console.log(getToken)
+    if (!getToken) {
+        window.location.href = 'index.html';
+    }
+});
+
 const adminsDataList = [
     { id: 1, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
     { id: 2, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },

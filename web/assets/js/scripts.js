@@ -1,3 +1,12 @@
+const baseURL = 'http://localhost/baby-clinic-system/api';
+const getToken = localStorage.getItem('token');
+
+function signOut() {
+    localStorage.clear();
+    window.location.reload();
+}
+
+
 !(function (NioApp, $) {
     "use strict";
     NioApp.Package.name = "DashLite";
