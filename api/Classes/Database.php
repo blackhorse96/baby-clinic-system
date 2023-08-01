@@ -1,24 +1,30 @@
 <?php
-class Database{
-    
-    // CHANGE THE DB INFO ACCORDING TO YOUR DATABASE
-    private $db_host = 'localhost';
-    private $db_name = 'baby_clinic_db';
-    private $db_username = 'root';
-    private $db_password = '';
-    
-    public function dbConnection(){
-        
-        try{
-            $conn = new PDO('mysql:host='.$this->db_host.';dbname='.$this->db_name,$this->db_username,$this->db_password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-        }
-        catch(PDOException $e){
-            echo "Connection error ".$e->getMessage(); 
-            exit;
-        }
-          
+include_once('../env.php');
+class DBConnection {
+    protected $database;
+
+    function __construct(){
+        $this->connect();
     }
+
+    protected function connect() {
+
+        $this->database = new mysqli(HOST, DBUSER, DBPASSWORD, DBNAME);
+        // Check connection
+        if ($this->database->connect_error) {
+            die("Connection failed: " . $this->database->connect_error);
+        }
+    }
+
+    function __destruct(){
+        $this->database->close();
+    }
+
+    function db(): mysqli {
+        if (!isset($this->database)) {
+            $this->connect();
+        }
+        return $this->database;
+    }
+
 }
-?>
