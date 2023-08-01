@@ -1,13 +1,8 @@
 <?php
 require '../Enums/Role.php';
+require '../Classes/Database.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "baby_clinic_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new DBConnection();
 
 // Check connection
 if ($conn->connect_error) {

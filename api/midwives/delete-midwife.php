@@ -7,13 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "baby_clinic_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new DBConnection();
 
 function msg($success, $status, $message, $extra = [])
 {

@@ -13,7 +13,7 @@ $password = "";
 $dbname = "baby_clinic_db";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new DBConnection();
 
 function msg($success, $status, $message, $extra = [])
 {
