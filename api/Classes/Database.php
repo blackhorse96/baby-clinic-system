@@ -20,7 +20,7 @@ class DBConnection {
         $this->database->close();
     }
 
-    function db(): mysqli {
+    public function db(): mysqli {
         if (!isset($this->database)) {
             $this->connect();
         }

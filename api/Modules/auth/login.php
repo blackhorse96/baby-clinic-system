@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once __DIR__ . '/../../Classes/Database.php';
 require_once __DIR__ . '/../..//Classes/utils.php';
 
-$conn = new DBConnection();
+$conn = (new DBConnection())->db();
 
 // IF REQUEST METHOD IS NOT EQUAL TO POST
 if($_SERVER["REQUEST_METHOD"] != "POST"):

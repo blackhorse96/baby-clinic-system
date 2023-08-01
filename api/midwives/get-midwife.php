@@ -6,7 +6,7 @@ require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
 require_once __DIR__ . '/../Classes/utils.php';
 
-$conn = new DBConnection();
+$conn = (new DBConnection())->db();
 
 if ($_SERVER["REQUEST_METHOD"] != "GET") {
     $returnData = msg(0, 404, 'Page Not Found!');

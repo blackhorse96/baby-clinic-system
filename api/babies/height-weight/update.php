@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once __DIR__ . '/../../Classes/Database.php';
 require_once __DIR__ . '/../../Classes/utils.php';
 
-$conn = new DBConnection();
+$conn = (new DBConnection())->db();
 
 if ($_SERVER["REQUEST_METHOD"] != "PUT") {
     $returnData = msg(0, 404, 'Page Not Found!');
