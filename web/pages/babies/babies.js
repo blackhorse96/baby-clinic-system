@@ -7,11 +7,11 @@ $(document).ready(function () {
 
 let babiesDataList = [
   {
-    id: 1,
-    name: "Sample Name",
-    birthday: "14/03/2023",
-    gender: "Male",
-    mother: "Mother Name",
+    id: 0,
+    name: '',
+    birthday: '',
+    gender: '',
+    mother: ''
   },
 ];
 
@@ -38,7 +38,7 @@ function generateBabiesTableBody(data) {
           <span>${item.gender}</span>
       </td>
       <td style="text-align: center;">
-          <span>${item.mother}</span>
+          <span>${item.mother.name}</span>
       </td>
       <td style="text-align: center;">
           <ul >
@@ -66,6 +66,10 @@ function generateBabiesTableBody(data) {
                               <li btn onclick="babyGrowthPageLoad(${
                                 item.id
                               })"><a><em class="icon ni ni-eye"></em><span>View Growth Details</span></a></li>
+
+                              <li btn onclick="deleteBaby(${
+                                item.id
+                              })"><a><em class="icon ni ni-trash"></em><span>Delete Baby</span></a></li>
                           </ul>
                       </div>
                   </div>
@@ -90,13 +94,19 @@ function getBabies(motherId = null) {
   .then(response => response.json())
   .then(data => {
       console.log(data);
-      // Handle the response here
+      if (data.success === 1) {
+        babiesDataList = data.babies;
+        generateBabiesTableBody(data.babies);
+        $('#loader').hide();
+    }
   })
   .catch(error => console.error('Error:', error));
 }
 
 function deleteBaby(babyId) {
-  fetch('http://localhost/baby-clinic-system/api/babies/delete-baby.php', {
+  $('#loader').show();
+  let url = `${baseURL}/babies/delete-baby.php`;
+  fetch(url, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -105,10 +115,18 @@ function deleteBaby(babyId) {
   })
   .then(response => response.json())
   .then(data => {
-      console.log(data);
-      // Handle the response here
+    if (data.success === 1) {
+      alert('Delete successfully');
+
+      window.location.reload();
+  }
+  $('#loader').hide();
   })
-  .catch(error => console.error('Error:', error));
+  .catch(error => {
+    alert('Error:', error)
+  $('#loader').hide();
+    
+  });
 }
 
 function viewBaby() {}

@@ -29,22 +29,39 @@ $returnData = [];
 if ($_SERVER["REQUEST_METHOD"] != "GET") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
-    if (isset($_GET['mother_id'])) {
-        // Filter by mother_id if provided
-        $motherId = intval($_GET['mother_id']);
-        $stmt = $conn->prepare("SELECT * FROM babies WHERE mother_id = ?");
-        $stmt->bind_param("i", $motherId);
-    } else {
-        // Retrieve all babies if mother_id not provided
-        $stmt = $conn->prepare("SELECT * FROM babies");
-    }
-
+    // Retrieve all babies from the "babies" table
+    $stmt = $conn->prepare("SELECT * FROM babies");
     $stmt->execute();
     $result = $stmt->get_result();
     $babies = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 
-    $returnData = msg(1, 200, 'Success', ['babies' => $babies]);
+    // Loop through each baby to fetch mother details and combine them
+    $babiesWithMothers = [];
+    foreach ($babies as $baby) {
+        $babyId = $baby['id'];
+        $motherId = $baby['mother_id'];
+
+        // Fetch mother details if a mother_id is available
+        if ($motherId) {
+            $stmt = $conn->prepare("SELECT * FROM mothers WHERE id = ?");
+            $stmt->bind_param("i", $motherId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $motherData = $result->fetch_assoc();
+            $stmt->close();
+        } else {
+            $motherData = null;
+        }
+
+        // Combine baby data with mother data (if available)
+        $babyWithMother = $baby;
+        $babyWithMother['mother'] = $motherData;
+        $babiesWithMothers[] = $babyWithMother;
+    }
+
+    $returnData = msg(1, 200, 'Success', ['babies' => $babiesWithMothers]);
 }
 
 echo json_encode($returnData);
+?>
