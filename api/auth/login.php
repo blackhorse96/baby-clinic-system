@@ -12,8 +12,6 @@ require_once __DIR__ . '/../Classes/utils.php';
 
 $conn = (new DBConnection())->db();
 
-var_dump($conn->error);
-
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $returnData = msg(0, 404, 'Page Not Found!');
