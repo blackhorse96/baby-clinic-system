@@ -6,11 +6,13 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 require_once __DIR__ . '/../Enums/Role.php';
-require_once __DIR__ . '/../Classes/Database.php';
+require_once __DIR__ . '/../Classes/JwtHandler.php';
 require_once __DIR__ . '/../Classes/Database.php';
 require_once __DIR__ . '/../Classes/utils.php';
 
 $conn = (new DBConnection())->db();
+
+var_dump($conn->error);
 
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -19,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     // Validate input fields
     $username = isset($data->username) ? trim($data->username) : '';
     $password = isset($data->password) ? trim($data->password) : '';
-
+    error_log($username);
+    error_log($password);
     if (empty($username) || empty($password)) {
         $returnData = msg(0, 422, 'Please Fill in all Required Fields!');
     } else {

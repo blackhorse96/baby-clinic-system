@@ -8,16 +8,20 @@ class DBConnection {
     }
 
     protected function connect() {
-
+        error_log(HOST);
+        error_log(DBUSER);
+        error_log(DBPASSWORD);
+        error_log(DBNAME);
         $this->database = new mysqli(HOST, DBUSER, DBPASSWORD, DBNAME);
         // Check connection
         if ($this->database->connect_error) {
+            error_log($this->database->connect_error);
             die("Connection failed: " . $this->database->connect_error);
         }
     }
 
     function __destruct(){
-        $this->database->close();
+//        $this->database->close();
     }
 
     public function db(): mysqli {
@@ -25,6 +29,10 @@ class DBConnection {
             $this->connect();
         }
         return $this->database;
+    }
+
+    public function close() {
+        $this->database->close();
     }
 
 }
