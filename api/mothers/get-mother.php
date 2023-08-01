@@ -4,19 +4,9 @@ header("Content-Type: application/json; charset=UTF-8");
 
 require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
+require_once __DIR__ . '/../Classes/utils.php';
 
 $conn = new DBConnection();
-
-function msg($success, $status, $message, $extra = [])
-{
-    return array_merge([
-        'success' => $success,
-        'status' => $status,
-        'message' => $message
-    ], $extra);
-}
-
-$returnData = [];
 
 if ($_SERVER["REQUEST_METHOD"] != "GET") {
     $returnData = msg(0, 404, 'Page Not Found!');

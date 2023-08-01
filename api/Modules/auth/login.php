@@ -5,21 +5,10 @@ header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-require __DIR__.'/classes/Database.php';
-require __DIR__.'/classes/JwtHandler.php';
-
-function msg($success,$status,$message,$extra = []){
-    return array_merge([
-        'success' => $success,
-        'status' => $status,
-        'message' => $message
-    ],$extra);
-}
+require_once __DIR__ . '/../../Classes/Database.php';
+require_once __DIR__ . '/../..//Classes/utils.php';
 
 $conn = new DBConnection();
-
-$data = json_decode(file_get_contents("php://input"));
-$returnData = [];
 
 // IF REQUEST METHOD IS NOT EQUAL TO POST
 if($_SERVER["REQUEST_METHOD"] != "POST"):

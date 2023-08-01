@@ -1,13 +1,9 @@
 <?php
 require '../Enums/Role.php';
-require '../Classes/Database.php';
+require_once __DIR__ . '/../Classes/Database.php';
+require_once __DIR__ . '/../Classes/utils.php';
 
 $conn = new DBConnection();
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Create users credentials table
 $roles = [Role::SUPER_ADMIN, Role::ADMIN, Role::MIDWIFE, Role::MOTHER];

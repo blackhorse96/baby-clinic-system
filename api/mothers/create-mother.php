@@ -7,26 +7,8 @@ header("Content-Type: application/json; charset=UTF-8");
 require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "baby_clinic_db";
-
 // Create connection
 $conn = new DBConnection();
-
-function msg($success, $status, $message, $extra = [])
-{
-    return array_merge([
-        'success' => $success,
-        'status' => $status,
-        'message' => $message
-    ], $extra);
-}
-
-// DATA FORM REQUEST
-$data = json_decode(file_get_contents("php://input"));
-$returnData = [];
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $returnData = msg(0, 404, 'Page Not Found!');
