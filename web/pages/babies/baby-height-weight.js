@@ -314,4 +314,43 @@ var weightChartOptions = {
 weightChart.render();
 
 
-function babyHeightWeightSubmit() {}
+function babyHeightWeightSubmit() {
+  const date = document.getElementById('baby-height-weight-date').value;
+  const height = parseFloat(document.getElementById('baby-height').value);
+  const weight = parseFloat(document.getElementById('baby-weight').value);
+
+  // Call the createHeightWeight function with the extracted data
+  createHeightWeight({
+      date: date,
+      height: height,
+      weight: weight,
+      baby_id: babyId
+  });
+}
+
+function createHeightWeight(heightWeightData) {
+  $('#loader').show();
+  const url = `${baseURL}/babies/height-weight/create.php`;
+  fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(heightWeightData),
+  })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success === 1) {
+            window.location.reload();
+        } else {
+            alert('Failed to create data: ' + response.message);
+            $('#loader').hide();
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while creating data.');
+        $('#loader').hide();
+
+    });
+}
