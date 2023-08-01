@@ -74,6 +74,29 @@ function generateBabyHeightWeightTableBody(data) {
   });
 
   tableBody.innerHTML = tableHTML;
+
+  const tableBodyPdf = document.getElementById("baby-height-weight-table-body-pdf");
+  let tableHTMLPdf = "";
+  data.forEach((item, index) => {
+    tableHTMLPdf += `
+      <tr >
+      <td style="text-align: center;">
+          <span >${index + 1}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.date}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.height}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.weight}</span>
+      </td>
+  </tr>
+      `;
+  });
+
+  tableBodyPdf.innerHTML = tableHTMLPdf;
 }
 
 generateBabyHeightWeightTableBody(babyHeightAndWeightList);
@@ -163,7 +186,7 @@ var heightChartOptions = {
     document.querySelector("#height-line-chart"),
     heightChartOptions
   );
-heightChart.render();
+  heightChart.render();
 
 function test2() {
     $('#height-line-chart').hide();
@@ -283,6 +306,7 @@ var weightChartOptions = {
       },
     ],
   },
+  
   weightChart = new ApexCharts(
     document.querySelector("#weight-line-chart"),
     weightChartOptions

@@ -62,27 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                         array("user_id" => $user['id'])
                     );
 
-                    $identity = null;
-
-                    if($user['role'] == 'Mother') {
-                        $fetch_mother = "SELECT * FROM `mothers` WHERE `user_id`=?";
-                        $stmt2 = $conn->prepare($fetch_mother);
-                        $stmt2->bind_param("i", $user['id']);
-                        $stmt2->execute();
-                        $result2 = $stmt2->get_result();
-                        $stmt2->close();
-    
-                        $identity = $result2->fetch_assoc();
-                    }
-
-
                     $returnData = [
                         'success' => 1,
                         'message' => 'You have successfully logged in.',
                         'data' => [
                             'id' => $user['id'],
                             'role' => $user['role'],
-                            'name' => $identity['name'] || '',
                             'token' => $token
                         ]
                     ];

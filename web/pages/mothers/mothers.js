@@ -1,24 +1,23 @@
-const mothersDataList = [
-    { id: 1, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 2, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 3, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-    { id: 6, name: 'Sample Name', nic: '787767748V', phone: '0123456789', email: 'abu@example.com' },
-  ];
+$(document).ready(function () {
+    console.log(getToken)
+    if (!getToken) {
+        window.location.href = 'index.html';
+    }
+});
 
-  function generateTableBody(data) {
+let mothersDataList = [
+    { id: '', name: '', nic: '', phone_number: '', email: '' },
+];
+
+generateTableBody(mothersDataList);
+getMothers();
+
+function generateTableBody(data) {
     const tableBody = document.getElementById('mothers-table-body');
     let tableHTML = '';
-  
+
     data.forEach((item, index) => {
-      tableHTML += `
+        tableHTML += `
       <tr >
       <td style="text-align: center;">
           <span >${index + 1}</span>
@@ -30,7 +29,7 @@ const mothersDataList = [
           <span>${item.nic}</span>
       </td>
       <td style="text-align: center;">
-          <span>${item.phone}</span>
+          <span>${item.phone_number}</span>
       </td>
       <td style="text-align: center;">
           <span>${item.email}</span>
@@ -39,11 +38,10 @@ const mothersDataList = [
           <ul >
               <li>
                   <div class="drodown">
-                      <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                      <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                       <div class="dropdown-menu dropdown-menu-end">
                           <ul class="link-list-opt no-bdr">
-                              <li btn onclick="handleButtonClick(${item.id})"><a><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                              <li btn onclick="handleButtonClick(${item.id})"><a><em class="icon ni ni-activity-round"></em><span>Activities</span></a></li>
+                              <li btn onclick="deleteMother(${item.id})"><a><em class="icon ni ni-trash"></em><span>Delete Mother</span></a></li>
                           </ul>
                       </div>
                   </div>
@@ -53,13 +51,98 @@ const mothersDataList = [
   </tr>
       `;
     });
-  
-    tableBody.innerHTML = tableHTML;
-  }
 
-  generateTableBody(mothersDataList);
-  
-  function handleButtonClick(id) {
-    console.log('Button clicked for ID:', id);
-  }
-  
+    tableBody.innerHTML = tableHTML;
+}
+
+// Function to get all mothers
+async function getMothers() {
+    $('#loader').show();
+    const url = `${baseURL}/mothers/get-mothers.php`;
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Your-Optional-Authentication-Token'
+            }
+        });
+
+        if (response) {
+            const data = await response.json();
+            mothersDataList = data.mothers;
+            generateTableBody(data.mothers);
+            $('#loader').hide();
+        }
+    } catch (error) {
+        console.error('Error getting mothers:', error);
+        $('#loader').hide();
+        return { success: 0, status: 500, message: 'Internal Server Error' };
+    }
+}
+
+
+// Function to delete a mother by ID
+async function deleteMother(motherId) {
+    $('#loader').show();
+    const url = `${baseURL}/mothers/delete-mother.php`;
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ mother_id: motherId })
+        });
+
+        const data = await response.json();
+        if (data.success === 1) {
+            alert('Delete successfully');
+            window.location.reload();
+        }
+        $('#loader').hide();
+    } catch (error) {
+        console.error('Error deleting mother:', error);
+        alert('Error deleting mother:', error);
+        $('#loader').hide();
+        return { success: 0, status: 500, message: 'Internal Server Error' };
+    }
+}
+
+// Function to create a mother
+async function createMother(motherData) {
+    try {
+        const response = await fetch('http://localhost/baby-clinic-system/api/mothers/create-mother.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(motherData)
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error creating mother:', error);
+        return { success: 0, status: 500, message: 'Internal Server Error' };
+    }
+}
+
+// Function to get a specific mother by ID
+async function getMotherById(motherId) {
+    try {
+        const response = await fetch(`http://localhost/baby-clinic-system/api/mothers/get-mother.php?mother_id=${motherId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error getting mother:', error);
+        return { success: 0, status: 500, message: 'Internal Server Error' };
+    }
+}
+

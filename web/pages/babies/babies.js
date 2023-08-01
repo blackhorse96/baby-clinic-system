@@ -1,61 +1,22 @@
-const babiesDataList = [
+$(document).ready(function () {
+  console.log(getToken)
+  if (!getToken) {
+      window.location.href = 'index.html';
+  }
+});
+
+let babiesDataList = [
   {
     id: 1,
     name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
-  },
-  {
-    id: 1,
-    name: "Sample Name",
-    nic: "14/03/2023",
-    phone: "Male",
-    email: "Mother Name",
+    birthday: "14/03/2023",
+    gender: "Male",
+    mother: "Mother Name",
   },
 ];
+
+generateBabiesTableBody(babiesDataList);
+getBabies();
 
 function generateBabiesTableBody(data) {
   const tableBody = document.getElementById("babies-table-body");
@@ -71,13 +32,13 @@ function generateBabiesTableBody(data) {
           <span>${item.name}</span>
       </td>
       <td style="text-align: center;">
-          <span>${item.nic}</span>
+          <span>${item.birthday}</span>
       </td>
       <td style="text-align: center;">
-          <span>${item.phone}</span>
+          <span>${item.gender}</span>
       </td>
       <td style="text-align: center;">
-          <span>${item.email}</span>
+          <span>${item.mother}</span>
       </td>
       <td style="text-align: center;">
           <ul >
@@ -118,7 +79,37 @@ function generateBabiesTableBody(data) {
   tableBody.innerHTML = tableHTML;
 }
 
-generateBabiesTableBody(babiesDataList);
+function getBabies(motherId = null) {
+  $('#loader').show();
+  let url = `${baseURL}/babies/get-babies.php`;
+  if (motherId !== null) {
+      url += '?mother_id=' + motherId;
+  }
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      // Handle the response here
+  })
+  .catch(error => console.error('Error:', error));
+}
+
+function deleteBaby(babyId) {
+  fetch('http://localhost/baby-clinic-system/api/babies/delete-baby.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ baby_id: babyId }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      // Handle the response here
+  })
+  .catch(error => console.error('Error:', error));
+}
 
 function viewBaby() {}
 
@@ -162,6 +153,30 @@ function babyGrowthPageLoad(id) {
   $("#single-baby-growth").show();
 }
 
-function createNewBaby() {
-    console.log(4444444444)
+function downloadPdf() {
+  // const pdf = new jsPDF();
+  //     pdf.setFontSize(18);
+  //     pdf.text(20, 20, 'Baby Height and Weight Details');
+  //     const table = document.getElementById('baby-h-w-table');
+  //     pdf.autoTable({ html: table });
+  //     pdf.save('baby_details.pdf');
+      $('#loader').show();
+
+      $('#baby-h-w-table').show();
+      const element = document.getElementById('baby-h-w-table');
+      const opt = {
+        margin:       10,
+        filename:     'baby_details.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Generate the PDF using html2pdf.js
+      html2pdf().set(opt).from(element).save();
+
+      setTimeout(() => {
+        $('#baby-h-w-table').hide();
+        $('#loader').hide();
+      }, 1000);
 }
