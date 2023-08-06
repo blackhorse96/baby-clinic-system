@@ -342,28 +342,31 @@
                                     <div class="col-xl-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <a href="#" class="btn btn-primary"><em
+                                                <a onclick="heightPrevYear()" class="btn btn-primary"><em
                                                         class="icon ni ni-back-ios"></em></a>
-                                                <span style="margin: 0px 10px; font-size: large;">2023</span>
-                                                <a href="#" class="btn btn-primary"><em
+                                                <span style="margin: 0px 10px; font-size: large;" id="height-selected-year">2023</span>
+                                                <a onclick="heightNextYear()" class="btn btn-primary"><em
                                                         class="icon ni ni-forward-ios"></em></a>
-
-                                                <div style="margin-top: 20px;" id="height-line-chart"
-                                                    class="apex-charts"></div>
+                                                    <div id="height-line-chart-parent">
+                                                        <div style="margin-top: 20px;" id="height-line-chart"
+                                                            class="apex-charts"></div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <a href="#" class="btn btn-primary"><em
+                                                <a onclick="weightPrevYear()" class="btn btn-primary"><em
                                                         class="icon ni ni-back-ios"></em></a>
-                                                <span style="margin: 0px 10px; font-size: large;">2023</span>
-                                                <a href="#" class="btn btn-primary"><em
+                                                <span style="margin: 0px 10px; font-size: large;" id="weight-selected-year">2023</span>
+                                                <a onclick="weightNextYear()" class="btn btn-primary"><em
                                                         class="icon ni ni-forward-ios"></em></a>
 
-                                                <div style="margin-top: 20px;" id="weight-line-chart"
-                                                    class="apex-charts"></div>
+                                                        <div id="weight-line-chart-parent">
+                                                            <div style="margin-top: 20px;" id="weight-line-chart"
+                                                                class="apex-charts"></div>
+                                                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -887,7 +890,7 @@
                                     <label class="form-label">Date*</label>
                                     <div class="form-control-wrap">
                                         <input type="date" class="form-control" placeholder="Enter Date"
-                                            id="baby-weight" required>
+                                            id="baby-vaccine-date" required>
                                         <div class="error-message" style="display: none; color: red;">This field is
                                             required</div>
                                         <div class="error-message-placeholder" style="opacity: 0;">.</div>
@@ -963,7 +966,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Status</label>
                                     <div class="form-control-wrap">
-                                        <select class="form-select js-select2" required id="baby-vaccine-status">
+                                        <select class="form-select js-select2" required id="baby-clinic-status">
                                             <option value="PENDING">Pending</option>
                                             <option value="VISITED">Visited</option>
                                         </select>

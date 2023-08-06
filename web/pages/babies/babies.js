@@ -141,6 +141,7 @@ function babyHeightWeightPageLoad(id) {
   }, 500);
   $("#babies-list").hide();
   $("#single-baby-height-weight").show();
+getAllHeightWeight(babyId);
 }
 
 function babyClinicPageLoad(id) {
@@ -163,6 +164,7 @@ function babyVaccinePageLoad(id) {
 
   $("#babies-list").hide();
   $("#single-baby-vaccine").show();
+  getAllVaccines(babyId);
 }
 
 function babyGrowthPageLoad(id) {

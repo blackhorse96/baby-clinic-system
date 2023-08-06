@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
     // Validate input fields
-    $requiredFields = ['date', 'height', 'weight', 'baby_id'];
+    $requiredFields = ['date', 'visit_type', 'status', 'baby_id'];
     foreach ($requiredFields as $field) {
         if (!isset($data->$field) || empty(trim($data->$field))) {
             $returnData = msg(0, 422, 'Please Fill in all Required Fields!');
@@ -42,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 
     $date = trim($data->date);
-    $height = floatval($data->height);
-    $weight = floatval($data->weight);
+    $visit_type = trim($data->visit_type);
+    $status = trim($data->status);
     $baby_id = intval($data->baby_id);
 
     try {
@@ -61,15 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         }
         $stmt->close();
 
-        // Insert into babies_height_weight table
-        $insert_h_w_query = "INSERT INTO babies_height_weight (date, height, weight, baby_id) VALUES (?, ?, ?, ?)";
-        $insert_h_w_stmt = $conn->prepare($insert_h_w_query);
-        $insert_h_w_stmt->bind_param("sddi", $date, $height, $weight, $baby_id);
-        $insert_h_w_stmt->execute();
+        // Insert into babies_clinics table
+        $insert_query = "INSERT INTO babies_clinics (date, visit_type, status, baby_id) VALUES (?, ?, ?, ?)";
+        $insert_stmt = $conn->prepare($insert_query);
+        $insert_stmt->bind_param("sssi", $date, $visit_type, $status, $baby_id);
+        $insert_stmt->execute();
         // Get the inserted ID
-        $inserted_id = $insert_h_w_stmt->insert_id;
+        $inserted_id = $insert_stmt->insert_id;
 
-        $returnData = msg(1, 201, 'Height and Weight data added successfully.', ['inserted_id' => $inserted_id]);
+        $returnData = msg(1, 201, 'Clinic data added successfully.', ['inserted_id' => $inserted_id]);
     } catch (Exception $e) {
         $returnData = msg(0, 500, $e->getMessage());
     }

@@ -1,8 +1,3 @@
-const fullDate = new Date();
-
-const dayOfMonth = fullDate.getDate();
-
-const monthIndex = fullDate.getMonth();
 const months = [
   "Jan",
   "Feb",
@@ -17,17 +12,9 @@ const months = [
   "Nov",
   "Dec",
 ];
-const month = months[monthIndex];
 
-const babyHeightAndWeightList = [
-  { id: 1, date: "07/19/2023", height: 20, weight: 2, baby_id: 1 },
-  { id: 2, date: "08/19/2023", height: 25, weight: 3, baby_id: 2 },
-  { id: 3, date: "09/19/2023", height: 29, weight: 4, baby_id: 3 },
-  { id: 4, date: "10/19/2023", height: 30, weight: 4.5, baby_id: 4 },
-  { id: 5, date: "11/19/2023", height: 34, weight: 4.1, baby_id: 5 },
-  { id: 6, date: "12/19/2023", height: 36, weight: 4.6, baby_id: 6 },
-  { id: 7, date: "01/19/2024", height: 41, weight: 4.9, baby_id: 7 },
-  { id: 8, date: "02/19/2024", height: 43, weight: 5.6, baby_id: 9 },
+let babyHeightAndWeightList = [
+  { id: -1, date: "", height: 0, weight: 0, baby_id: -1 },
 ];
 
 function generateBabyHeightWeightTableBody(data) {
@@ -56,13 +43,11 @@ function generateBabyHeightWeightTableBody(data) {
                       <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                       <div class="dropdown-menu dropdown-menu-end">
                           <ul class="link-list-opt no-bdr">
-                              <li btn onclick="editBabyHeightWeight(${
-                                item.baby_id
-                              })"><a><em class="icon ni ni-edit"></em><span>Edit Details</span></a></li>
+                              <li btn onclick="editBabyHeightWeight(${item.baby_id
+      })"><a><em class="icon ni ni-edit"></em><span>Edit Details</span></a></li>
                               
-                              <li btn onclick="deleteBabyHeightWeight(${
-                                item.baby_id
-                              })"><a><em class="icon ni ni-delete"></em><span>Edit Details</span></a></li>
+                              <li btn onclick="deleteBabyHeightWeight(${item.baby_id
+      })"><a><em class="icon ni ni-delete"></em><span>Edit Details</span></a></li>
                           </ul>
                       </div>
                   </div>
@@ -101,34 +86,133 @@ function generateBabyHeightWeightTableBody(data) {
 
 generateBabyHeightWeightTableBody(babyHeightAndWeightList);
 
-function editBabyHeightWeight() {}
-
-function deleteBabyHeightWeight() {}
-
-var heightSelectedYear = new Date("2023");
-
-var heightArray = [];
-
-var tempList = babyHeightAndWeightList.filter(
-  (item) =>
-    heightSelectedYear.getFullYear() === new Date(item.date).getFullYear()
-);
-console.log(tempList);
-
-for (let i = 1; i < 13; i++) {
-  var height = null;
-
-  tempList.forEach((data) => {
-    if (i == new Date(data.date).getMonth()) height = data.height;
-  });
-
-  heightArray.push(height);
+function getAllHeightWeight(babyId) {
+  $('#loader').show();
+  const url = `${baseURL}/babies/height-weight/get.php${babyId ? `?baby_id=${babyId}` : ''}`;
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response here
+      babyHeightAndWeightList = data.data;
+      babyHeightAndWeightList.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA;
+      });
+      generateBabyHeightWeightTableBody(babyHeightAndWeightList);
+      loadHeightChart();
+      loadWeightChart();
+      $('#loader').hide();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      $('#loader').hide();
+    });
 }
 
-console.log(heightArray);
+function editBabyHeightWeight() { }
 
-// Loading charts
-var heightChartOptions = {
+function deleteBabyHeightWeight() { }
+
+function babyHeightWeightSubmit() {
+  const date = document.getElementById('baby-height-weight-date').value;
+  const height = parseFloat(document.getElementById('baby-height').value);
+  const weight = parseFloat(document.getElementById('baby-weight').value);
+
+  // Call the createHeightWeight function with the extracted data
+  createHeightWeight({
+    date: date,
+    height: height,
+    weight: weight,
+    baby_id: babyId
+  });
+}
+
+function createHeightWeight(heightWeightData) {
+  $('#loader').show();
+  const url = `${baseURL}/babies/height-weight/create.php`;
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(heightWeightData),
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success === 1) {
+        const id = data.inserted_id;
+        const newItem = {
+          id: id,
+          date: heightWeightData.date,
+          height: heightWeightData.height,
+          weight: heightWeightData.weight,
+          baby_id: heightWeightData.baby_id
+        };
+        babyHeightAndWeightList.push(newItem);
+        babyHeightAndWeightList.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA;
+        });
+        generateBabyHeightWeightTableBody(babyHeightAndWeightList);
+
+        heightArray = [];
+        loadHeightChart();
+
+        weightArray = [];
+        loadWeightChart();
+        closeHeightWeightModal();
+        setTimeout(() => {
+          $('#loader').hide();
+        }, 1000);
+
+      } else {
+        alert('Failed to create data: ' + response.message);
+        $('#loader').hide();
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while creating data.');
+      $('#loader').hide();
+
+    });
+}
+
+function closeHeightWeightModal() {
+  $('#createNewHeightWeightPopup').modal('hide');
+}
+
+// Height chart
+
+var heightSelectedYear = new Date();
+let heightChart;
+var heightArray = [];
+
+function loadHeightChart() {
+  $('#loader').show();
+  var tempList = babyHeightAndWeightList.filter(
+    (item) =>
+      heightSelectedYear.getFullYear() === new Date(item.date).getFullYear()
+  );
+  for (let i = 0; i < 12; i++) {
+    var height = null;
+
+    tempList.forEach((data) => {
+      if (i == new Date(data.date).getMonth()) height = data.height;
+    });
+
+    heightArray.push(height);
+  }
+
+  // Loading charts
+  var heightChartOptions = {
     chart: {
       height: 300,
       type: "line",
@@ -182,90 +266,96 @@ var heightChartOptions = {
       },
     ],
   },
-  heightChart = new ApexCharts(
-    document.querySelector("#height-line-chart"),
-    heightChartOptions
-  );
+    heightChart = new ApexCharts(
+      document.querySelector("#height-line-chart"),
+      heightChartOptions
+    );
   heightChart.render();
-
-function test2() {
-    $('#height-line-chart').hide();
-    heightChartOptions = {
-        chart: {
-          height: 300,
-          type: "line",
-          zoom: { enabled: !1 },
-          toolbar: { show: !1 },
-        },
-        colors: ["#3b5de7", "#eeb902"],
-        dataLabels: { enabled: !1 },
-        stroke: { width: [2, 2], curve: "straight" },
-        series: [
-          {
-            name: "High - 2018",
-            data: [26, 24, 32, 36, 33, 31, 33, 41, 43, 52, null, null],
-          },
-        ],
-        title: { text: "Average High & Low Temperature", align: "left" },
-        grid: {
-          row: { colors: ["transparent", "transparent"], opacity: 0.2 },
-          borderColor: "#f1f1f1",
-        },
-        markers: { style: "inverted", size: 4 },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          title: { text: "Month" },
-        },
-        yaxis: { title: { text: "Temperature" }, min: 5, max: 70 },
-        legend: {
-          position: "top",
-          horizontalAlign: "right",
-          floating: !0,
-          offsetY: -25,
-          offsetX: -5,
-        },
-        responsive: [
-          {
-            breakpoint: 600,
-            options: { chart: { toolbar: { show: !1 } }, legend: { show: !1 } },
-          },
-        ],
-      },
-      heightChart = new ApexCharts(
-        document.querySelector("#height-line-chart"),
-        heightChartOptions
-      );
-    heightChart.render();
-    $('#height-line-chart').show();
+  $('#loader').hide();
 }
 
-var weightChartOptions = {
+function resetHightChart() {
+  const parentElement = document.querySelector("#height-line-chart-parent");
+  const chartElement = document.querySelector("#height-line-chart");
+
+  if (parentElement && chartElement) {
+    parentElement.removeChild(chartElement);
+
+    const newChartElement = document.createElement("div");
+    newChartElement.id = "height-line-chart";
+    newChartElement.className = "apex-charts";
+
+    newChartElement.style.marginTop = "20px";
+
+    // Append the new chart element back to the parent
+    parentElement.appendChild(newChartElement);
+  }
+}
+
+function heightPrevYear() {
+  heightSelectedYear = new Date((heightSelectedYear.getFullYear() - 1).toString());
+  const yearSpan = document.getElementById('height-selected-year');
+  yearSpan.textContent = heightSelectedYear.getFullYear();
+  heightArray = [];
+  resetHightChart();
+  loadHeightChart();
+
+  setTimeout(() => {
+    $('#loader').hide();
+  }, 500);
+}
+
+function heightNextYear() {
+  heightSelectedYear = new Date((heightSelectedYear.getFullYear() + 1).toString());
+  const yearSpan = document.getElementById('height-selected-year');
+  yearSpan.textContent = heightSelectedYear.getFullYear();
+  heightArray = [];
+  resetHightChart();
+  loadHeightChart();
+
+  setTimeout(() => {
+    $('#loader').hide();
+  }, 500);
+}
+
+
+// Weight chart
+
+let weightChart;
+var weightSelectedYear = new Date();
+var weightArray = [];
+
+function loadWeightChart() {
+  $('#loader').show();
+  var tempList = babyHeightAndWeightList.filter(
+    (item) =>
+      weightSelectedYear.getFullYear() === new Date(item.date).getFullYear()
+  );
+
+  for (let i = 0; i < 12; i++) {
+    var weight = null;
+
+    tempList.forEach((data) => {
+      if (i === new Date(data.date).getMonth()) weight = data.weight;
+    });
+
+    weightArray.push(weight);
+  }
+
+  var weightChartOptions = {
     chart: {
       height: 300,
       type: "line",
       zoom: { enabled: !1 },
       toolbar: { show: !1 },
     },
-    colors: ["#3b5de7", "#eeb902"],
+    colors: ["#eeb902"],
     dataLabels: { enabled: !1 },
-    stroke: { width: [2, 2], curve: "straight" },
+    stroke: { width: [2], curve: "straight" },
     series: [
       {
-        name: "High - 2018",
-        data: [26, 24, 32, 36, 33, 31, 33, 41, 43, 52, null, null],
+        name: "Weight (kg)",
+        data: [...weightArray],
       },
     ],
     title: { text: "Weight", align: "center" },
@@ -276,22 +366,11 @@ var weightChartOptions = {
     markers: { style: "inverted", size: 4 },
     xaxis: {
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
       ],
       title: { text: "Month" },
     },
-    yaxis: { title: { text: "Weight (Kg)" }, min: 5, max: 70 },
+    yaxis: { title: { text: "Weight (kg)" }, min: 0, max: 10 },
     legend: {
       position: "top",
       horizontalAlign: "right",
@@ -305,52 +384,56 @@ var weightChartOptions = {
         options: { chart: { toolbar: { show: !1 } }, legend: { show: !1 } },
       },
     ],
-  },
-  
+  };
+
   weightChart = new ApexCharts(
     document.querySelector("#weight-line-chart"),
     weightChartOptions
   );
-weightChart.render();
-
-
-function babyHeightWeightSubmit() {
-  const date = document.getElementById('baby-height-weight-date').value;
-  const height = parseFloat(document.getElementById('baby-height').value);
-  const weight = parseFloat(document.getElementById('baby-weight').value);
-
-  // Call the createHeightWeight function with the extracted data
-  createHeightWeight({
-      date: date,
-      height: height,
-      weight: weight,
-      baby_id: babyId
-  });
+  weightChart.render();
+  $('#loader').hide();
 }
 
-function createHeightWeight(heightWeightData) {
-  $('#loader').show();
-  const url = `${baseURL}/babies/height-weight/create.php`;
-  fetch(url, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(heightWeightData),
-  })
-      .then(response => response.json())
-      .then(data => {
-          if (data.success === 1) {
-            window.location.reload();
-        } else {
-            alert('Failed to create data: ' + response.message);
-            $('#loader').hide();
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while creating data.');
-        $('#loader').hide();
+function resetWeightChart() {
+  const parentElement = document.querySelector("#weight-line-chart-parent");
+  const chartElement = document.querySelector("#weight-line-chart");
 
-    });
+  if (parentElement && chartElement) {
+    parentElement.removeChild(chartElement);
+
+    const newChartElement = document.createElement("div");
+    newChartElement.id = "weight-line-chart";
+    newChartElement.className = "apex-charts";
+    newChartElement.style.marginTop = "20px";
+
+    parentElement.appendChild(newChartElement);
+  }
 }
+
+function weightPrevYear() {
+  weightSelectedYear = new Date((weightSelectedYear.getFullYear() - 1).toString());
+  const yearSpan = document.getElementById('weight-selected-year');
+  yearSpan.textContent = weightSelectedYear.getFullYear();
+  weightArray = [];
+  resetWeightChart();
+  loadWeightChart();
+
+  setTimeout(() => {
+    $('#loader').hide();
+  }, 500);
+}
+
+function weightNextYear() {
+  weightSelectedYear = new Date((weightSelectedYear.getFullYear() + 1).toString());
+  const yearSpan = document.getElementById('weight-selected-year');
+  yearSpan.textContent = weightSelectedYear.getFullYear();
+  weightArray = [];
+  resetWeightChart();
+  loadWeightChart();
+
+  setTimeout(() => {
+    $('#loader').hide();
+  }, 500);
+}
+
+
