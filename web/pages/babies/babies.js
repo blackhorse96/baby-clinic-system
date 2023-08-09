@@ -153,6 +153,7 @@ function babyClinicPageLoad(id) {
 
   $("#babies-list").hide();
   $("#single-baby-clinic").show();
+  getAllClinics(babyId);
 }
 
 function babyVaccinePageLoad(id) {
@@ -176,6 +177,7 @@ function babyGrowthPageLoad(id) {
 
   $("#babies-list").hide();
   $("#single-baby-growth").show();
+  getAllGrowths(babyId);
 }
 
 function downloadPdf() {

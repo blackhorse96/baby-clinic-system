@@ -154,94 +154,6 @@
                                             </div>
                                         </div>
                                     </li><!-- .dropdown -->
-                                    <li class="dropdown notification-dropdown me-n1">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
-                                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
-                                            <div class="dropdown-head">
-                                                <span class="sub-title nk-dropdown-title">Notifications</span>
-                                                <a href="#">Mark All as Read</a>
-                                            </div>
-                                            <div class="dropdown-body">
-                                                <div class="nk-notification">
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to
-                                                                <span>Widthdrawl</span>
-                                                            </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit
-                                                                    Order</span> is placed</div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to
-                                                                <span>Widthdrawl</span>
-                                                            </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit
-                                                                    Order</span> is placed</div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to
-                                                                <span>Widthdrawl</span>
-                                                            </div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em
-                                                                class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit
-                                                                    Order</span> is placed</div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- notification -->
-                                            </div><!-- dropdown-body -->
-                                            <div class="dropdown-foot center">
-                                                <a href="#">View All</a>
-                                            </div>
-                                        </div>
-                                    </li><!-- .dropdown -->
                                 </ul><!-- quick-nav -->
                             </div><!-- header-tools -->
                         </div><!-- header-wrap -->
@@ -277,7 +189,7 @@
                                                             <div class="font-size-16 mt-2">Total Admins</div>
                                                         </div>
                                                     </div>
-                                                    <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4" id="total-admins">0</h4>
                                                 </div>
                                             </div>
                                         </div><!-- .col -->
@@ -293,7 +205,7 @@
                                                             <div class="font-size-16 mt-2">Total Midwives</div>
                                                         </div>
                                                     </div>
-                                                    <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4" id="total-midwives">0</h4>
                                                 </div>
                                             </div>
                                         </div><!-- .col -->
@@ -309,7 +221,7 @@
                                                             <div class="font-size-16 mt-2">Total Mothers</div>
                                                         </div>
                                                     </div>
-                                                    <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4" id="total-mothers">0</h4>
                                                 </div>
                                             </div>
                                         </div><!-- .col -->
@@ -325,7 +237,7 @@
                                                             <div class="font-size-16 mt-2">Total Babies</div>
                                                         </div>
                                                     </div>
-                                                    <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4" id="total-babies">0</h4>
                                                 </div>
                                             </div>
                                         </div><!-- .col -->
@@ -341,7 +253,7 @@
                                                             <div class="font-size-16 mt-2">Total Notices</div>
                                                         </div>
                                                     </div>
-                                                    <h4 class="mt-4">24</h4>
+                                                    <h4 class="mt-4" id="total-notices">0</h4>
                                                 </div>
                                             </div>
                                         </div><!-- .col -->
@@ -560,6 +472,7 @@
     <script src="./assets/js/fullcalendar.js"></script>
     <script src="./assets/js/calendar.js"></script>
     <script src="./assets/js/auth.js"></script>
+    <script type="module" src="pages/dashboard/dashboard.js"></script>
 </body>
 
 </html>

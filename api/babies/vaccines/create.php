@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $returnData = msg(0, 404, 'Page Not Found!');
 } else {
     // Validate input fields
-    $requiredFields = ['age', 'vaccine', 'date', 'baby_id'];
+    $requiredFields = ['age', 'vaccine', 'date', 'status', 'baby_id'];
     foreach ($requiredFields as $field) {
         if (!isset($data->$field) || empty(trim($data->$field))) {
             $returnData = msg(0, 422, 'Please Fill in all Required Fields!');
@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $age = trim($data->age);
     $vaccine = trim($data->vaccine);
     $date = trim($data->date);
+    $status = trim($data->status);
     $baby_id = intval($data->baby_id);
 
     try {
@@ -62,9 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $stmt->close();
 
         // Insert into babies_vaccines table
-        $insert_query = "INSERT INTO babies_vaccines (age, vaccine, date, baby_id) VALUES (?, ?, ?, ?)";
+        $insert_query = "INSERT INTO babies_vaccines (age, vaccine, date, status, baby_id) VALUES (?, ?, ?, ?)";
         $insert_stmt = $conn->prepare($insert_query);
-        $insert_stmt->bind_param("sssi", $age, $vaccine, $date, $baby_id);
+        $insert_stmt->bind_param("ssssi", $age, $vaccine, $date, $status, $baby_id);
         $insert_stmt->execute();
         // Get the inserted ID
         $inserted_id = $insert_stmt->insert_id;

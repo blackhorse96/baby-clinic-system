@@ -9,8 +9,8 @@ function signOut() {
 
 !(function (NioApp, $) {
     "use strict";
-    NioApp.Package.name = "DashLite";
-    NioApp.Package.version = "2.3";
+    NioApp.Package.name = "Baby Clinic";
+    NioApp.Package.version = "1.0";
 
     var $win = $(window), $body = $('body'), $doc = $(document),
 

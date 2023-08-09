@@ -3,13 +3,13 @@ const VACCINE_STATUS = {
     PENDING: 'PENDING'
 }
 
-const vaccineDataList = [
+let vaccineDataList = [
     {
-      id: 1,
-      age: "At Birth",
-      vaccine: "B.C.G",
-      date: "14/03/2023",
-      status: VACCINE_STATUS.PENDING,
+      id: -1,
+      age: "",
+      vaccine: "",
+      date: "",
+      status: "",
     },
   ];
   
@@ -101,7 +101,7 @@ const vaccineDataList = [
   // Call the createBabyVaccine function with the extracted data
   createBabyVaccine({
     age: age,
-    vaccineName: vaccineName,
+    vaccine: vaccineName,
     date: date,
     status: status,
     baby_id: babyId

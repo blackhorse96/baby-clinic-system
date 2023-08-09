@@ -1,7 +1,7 @@
 var htmlContent = '';
 
-const noticesDataList = [
-    { id: 1, title: 'Sample Name', date: '31/07/2023', rich_text: '<p>This is rich text</p>' },
+let noticesDataList = [
+    { id: 1, title: '', date: '', content: '' },
 ];
 
 function generateNoticesTableBody(data) {
@@ -27,6 +27,8 @@ function generateNoticesTableBody(data) {
                       <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                       <div class="dropdown-menu dropdown-menu-end">
                           <ul class="link-list-opt no-bdr">
+                              <li btn onclick="viewNotice(${item.id})"><a><em class="icon ni ni-eye"></em><span>View Notice</span></a></li>
+
                               <li btn onclick="deleteNotice(${item.id})"><a><em class="icon ni ni-trash"></em><span>Delete Notice</span></a></li>
                           </ul>
                       </div>
@@ -42,12 +44,161 @@ function generateNoticesTableBody(data) {
 }
 
 generateNoticesTableBody(noticesDataList);
+getAllNotices();
+
+function getAllNotices() {
+    $('#loader').show();
+    fetch(`${baseURL}/notices/get-notices.php`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                noticesDataList = data.data;
+                generateNoticesTableBody(noticesDataList);
+            } else {
+                console.error('Error getting notices:', data.message);
+            }
+            $('#loader').hide();
+        })
+        .catch(error => {
+            alert('Error:', error);
+            $('#loader').hide();
+        });
+}
 
 function deleteNotice(id) {
     console.log('Button clicked for ID:', id);
 }
 
-function noticeSubmit() { }
+function noticeSubmit() {
+    const title = document.getElementById('notice-title').value;
+    const content = htmlContent;
+    const date = new Date().toISOString().split('T')[0];
+
+    createNotice(title, content, date);
+}
+
+// Function to create a new notice
+function createNotice(title, content, date) {
+    $('#loader').show();
+    const data = {
+        title: title,
+        content: content,
+        date: date
+    };
+
+    fetch(`${baseURL}/notices/create-notice.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                const id = data.inserted_id;
+                const newItem = {
+                    id: id,
+                    date,
+                    title,
+                    content
+                };
+                noticesDataList.push(newItem);
+                generateNoticesTableBody(noticesDataList);
+            } else {
+                console.error('Error creating notice:', data.message);
+            }
+            closeNoticeModal();
+            setTimeout(() => {
+                $('#loader').hide();
+            }, 1000);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            $('#loader').hide();
+        });
+}
+
+function closeNoticeModal() {
+    $('#createNewNoticePopup').modal('hide');
+}
+
+function viewNotice(id) {
+    let titleHtml = document.getElementById('notice-title');
+    const contentHtml = document.getElementById('notice-content');
+
+    noticesDataList.forEach(item => {
+        if (id == item.id) {
+            titleHtml.innerHTML = `<h5 class="modal-title" id="staticBackdropLabel">ttttttttt</h5>`;
+            contentHtml.innerHTML = item.content;
+        }
+    })
+    
+    $('#viewNoticePopup').modal('show');
+}
+
+// Function to delete a notice by ID
+function deleteNotice(id) {
+    const data = { id: id };
+
+    fetch(`${baseURL}/notices/delete-notice.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                // Notice deleted successfully, do something with the response data
+                console.log('Notice deleted successfully:', data);
+            } else {
+                // Failed to delete notice, handle the error
+                console.error('Error deleting notice:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+// Function to update a notice by ID
+function updateNotice(id, title, content, date) {
+    const data = {
+        id: id,
+        title: title,
+        content: content,
+        date: date
+    };
+
+    fetch(`${baseURL}/notices/update-notice.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                // Notice updated successfully, do something with the response data
+                console.log('Notice updated successfully:', data);
+            } else {
+                // Failed to update notice, handle the error
+                console.error('Error updating notice:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
 
 
 !(function (NioApp, $) {
@@ -86,7 +237,6 @@ function noticeSubmit() { }
 
                 editor.on('text-change', function () {
                     htmlContent = editor.root.innerHTML;
-                        console.log(htmlContent);
                 });
             });
         }

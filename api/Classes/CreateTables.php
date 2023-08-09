@@ -137,6 +137,7 @@ $sql_babies_vaccines = "CREATE TABLE IF NOT EXISTS babies_vaccines (
     age VARCHAR(100) NOT NULL,
     vaccine VARCHAR(100) NOT NULL,
     date DATE NOT NULL,
+    status VARCHAR(15) NOT NULL,
     baby_id INT(11),
     FOREIGN KEY (baby_id) REFERENCES babies(id)
 )";
@@ -168,7 +169,7 @@ $sql_babies_growths = "CREATE TABLE IF NOT EXISTS babies_growths (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     detail VARCHAR(150) NOT NULL,
     age_gap VARCHAR(10) NOT NULL,
-    month INT NOT NULL,
+    month INT,
     baby_id INT(11),
     FOREIGN KEY (baby_id) REFERENCES babies(id)
 )";
