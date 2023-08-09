@@ -330,9 +330,9 @@
                                                     data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                                 <div class="toggle-expand-content" data-content="pageMenu">
                                                     <ul class="nk-block-tools g-3">
-                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
+                                                        <li class="nk-block-tools-opt"><a data-bs-toggle="modal" onclick="onClickNewVaccine()"
                                                                 data-bs-target="#createNewVaccinePopup"
-                                                                class="btn btn-primary"><span>+ New Vaccine</span></a></li>
+                                                                class="btn btn-primary" id="create-new-vaccine-btn"><span>+ New Vaccine</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -429,7 +429,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewGrowthPopup"
-                                                                class="btn btn-primary"><span>+ New Growth</span></a></li>
+                                                                class="btn btn-primary" id="create-new-growth-btn"><span>+ New Growth</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -798,7 +798,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12" style="margin-top: 0px;">
+                            <div class="col-md-12" style="margin-top: 0px;" id="vaccine-status">
                                 <div class="form-group">
                                     <label class="form-label">Status</label>
                                     <div class="form-control-wrap">
@@ -816,8 +816,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="babyVaccineSubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" onclick="babyVaccineClose()" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babyVaccineSubmit()" id="baby-vaccine-save" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="updateVaccineRecord()" style="display: none;" id="baby-vaccine-update" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -942,8 +943,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="babyGrowthSubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" onclick="babyGrowthClose()" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="babyGrowthSubmit()" id="baby-growth-save" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="updateGrowthRecord()" style="display: none;" id="baby-growth-update" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>

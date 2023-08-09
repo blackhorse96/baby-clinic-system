@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $stmt->close();
 
         // Insert into babies_vaccines table
-        $insert_query = "INSERT INTO babies_vaccines (age, vaccine, date, status, baby_id) VALUES (?, ?, ?, ?)";
+        $insert_query = "INSERT INTO babies_vaccines (age, vaccine, date, status, baby_id) VALUES (?, ?, ?, ?, ?)";
         $insert_stmt = $conn->prepare($insert_query);
         $insert_stmt->bind_param("ssssi", $age, $vaccine, $date, $status, $baby_id);
         $insert_stmt->execute();

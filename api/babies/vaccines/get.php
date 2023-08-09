@@ -51,7 +51,7 @@ try {
     $stmt->close();
 
     // Get all vaccines data for the specified baby_id
-    $select_query = "SELECT id, age, vaccine, date FROM babies_vaccines WHERE baby_id = ?";
+    $select_query = "SELECT id, age, vaccine, status, date FROM babies_vaccines WHERE baby_id = ?";
     $select_stmt = $conn->prepare($select_query);
     $select_stmt->bind_param("i", $baby_id);
     $select_stmt->execute();

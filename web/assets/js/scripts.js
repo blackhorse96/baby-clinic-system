@@ -1,5 +1,7 @@
 const baseURL = 'http://localhost/baby-clinic-system/api';
 const getToken = localStorage.getItem('token');
+const UserId = localStorage.getItem('userId');
+const userRole = localStorage.getItem('userRole');
 
 function signOut() {
     localStorage.clear();
