@@ -21,7 +21,7 @@ function generateBabyHeightWeightTableBody(data) {
   const tableBody = document.getElementById("baby-height-weight-table-body");
   let tableHTML = "";
 
-  data.forEach((item, index) => {
+  data?.forEach((item, index) => {
     tableHTML += `
       <tr >
       <td style="text-align: center;">
@@ -62,7 +62,7 @@ function generateBabyHeightWeightTableBody(data) {
 
   const tableBodyPdf = document.getElementById("baby-height-weight-table-body-pdf");
   let tableHTMLPdf = "";
-  data.forEach((item, index) => {
+  data?.forEach((item, index) => {
     tableHTMLPdf += `
       <tr >
       <td style="text-align: center;">

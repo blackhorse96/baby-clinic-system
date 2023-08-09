@@ -42,7 +42,7 @@ function generateAdminsTableBody(data) {
     const tableBody = document.getElementById('admins-table-body');
     let tableHTML = '';
 
-    data.forEach((item, index) => {
+    data?.forEach((item, index) => {
         tableHTML += `
       <tr >
       <td style="text-align: center;">

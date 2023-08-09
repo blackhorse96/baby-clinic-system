@@ -17,7 +17,7 @@ let vaccineDataList = [
     const tableBody = document.getElementById("baby-vaccine-table-body");
     let tableHTML = "";
   
-    data.forEach((item, index) => {
+    data?.forEach((item, index) => {
       tableHTML += `
         <tr >
         <td style="text-align: center;">

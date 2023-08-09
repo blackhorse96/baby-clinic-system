@@ -13,7 +13,7 @@ function generateMidwivesTableBody(data) {
     const tableBody = document.getElementById('midwives-table-body');
     let tableHTML = '';
 
-    data.forEach((item, index) => {
+    data?.forEach((item, index) => {
         tableHTML += `
       <tr >
       <td style="text-align: center;">

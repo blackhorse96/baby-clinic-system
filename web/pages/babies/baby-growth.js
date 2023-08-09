@@ -11,7 +11,7 @@ function generateBabyGrowthTableBody(data) {
     const tableBody = document.getElementById("baby-growth-table-body");
     let tableHTML = "";
 
-    data.forEach((item, index) => {
+    data?.forEach((item, index) => {
         tableHTML += `
         <tr >
         <td style="text-align: center;">
