@@ -3,6 +3,13 @@ const getToken = localStorage.getItem('token');
 const UserId = localStorage.getItem('userId');
 const userRole = localStorage.getItem('userRole');
 
+$(document).ready(function () {
+    if(userRole === 'Mother') {
+        $('#side-menu-admins').hide();
+        $('#side-menu-midwives').hide();
+    }
+});
+
 function signOut() {
     localStorage.clear();
     window.location.reload();
