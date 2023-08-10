@@ -118,8 +118,6 @@ function deleteBaby(babyId) {
   .then(response => response.json())
   .then(data => {
     if (data.success === 1) {
-      alert('Delete successfully');
-
       window.location.reload();
   }
   $('#loader').hide();
@@ -127,11 +125,99 @@ function deleteBaby(babyId) {
   .catch(error => {
     alert('Error:', error)
   $('#loader').hide();
-    
   });
 }
 
-function viewBaby() {}
+function onClickNewBaby() {
+  document.getElementById('baby-name').value = '';
+  document.getElementById('baby-birthday').value = '';
+  document.getElementById('baby-birth-time').value = '';
+  document.getElementById('baby-birth-weight').value = '';
+  document.getElementById('baby-birth-height').value = '';
+
+  const genderRadio = document.querySelectorAll('input[name="gender"]');
+  for (const radio of genderRadio) {
+      if (radio.value === 'Male') {
+          radio.checked = true;
+      } else {
+          radio.checked = false;
+      }
+  }
+
+  document.getElementById('baby-register-date').value = '';
+  document.getElementById('baby-moh').value = '';
+  document.getElementById('baby-division').value = '';
+  document.getElementById('baby-apgar-score').value = '';
+  document.getElementById('baby-hospital').value = '';
+  document.getElementById('baby-health-division').value = '';
+  document.getElementById('baby-mother-nic').value = '';
+  document.getElementById('baby-mother-email').value = '';
+
+  enableAllBabyFields();
+}
+
+function viewBaby(id) {
+  babiesDataList.forEach(item => {
+    if(item.id === id) {
+      fillFieldsFromData(item);
+    }
+  });
+
+  disableAllBabyFields();
+
+  $('#createNewBabyPopup').modal('show');
+}
+
+function fillFieldsFromData(data) {
+  document.getElementById('baby-name').value = data.name || '';
+  document.getElementById('baby-birthday').value = data.birthday || '';
+  document.getElementById('baby-birth-time').value = data.birth_time || '';
+  document.getElementById('baby-birth-weight').value = data.birth_weight || '';
+  document.getElementById('baby-birth-height').value = data.birth_height || '';
+
+  const genderRadio = document.querySelectorAll('input[name="gender"]');
+  for (const radio of genderRadio) {
+      if (radio.value === data.gender) {
+          radio.checked = true;
+      } else {
+          radio.checked = false;
+      }
+  }
+
+  document.getElementById('baby-register-date').value = data.register_date || '';
+  document.getElementById('baby-moh').value = data.moh_division || '';
+  document.getElementById('baby-division').value = data.division || '';
+  document.getElementById('baby-apgar-score').value = data.apgar_score || '';
+  document.getElementById('baby-hospital').value = data.hospital || '';
+  document.getElementById('baby-health-division').value = data.health_division || '';
+  document.getElementById('baby-mother-nic').value = data.mother.nic || '';
+  document.getElementById('baby-mother-email').value = data.mother.email || '';
+}
+
+
+function disableAllBabyFields() {
+  const formElements = document.querySelectorAll('.form-control');
+  
+  formElements.forEach(element => {
+      element.setAttribute('disabled', 'true');
+  });
+
+  $('#baby-submit-btn').hide();
+  $('#get-mother-btns').hide();
+}
+
+function enableAllBabyFields() {
+  const formElements = document.querySelectorAll('.form-control');
+  
+  formElements.forEach(element => {
+      element.removeAttribute('disabled');
+  });
+
+  $('#baby-submit-btn').show();
+  $('#get-mother-btns').show();
+}
+
+
 
 function babyHeightWeightPageLoad(id) {
   babyId = id;
@@ -181,12 +267,6 @@ function babyGrowthPageLoad(id) {
 }
 
 function downloadPdf() {
-  // const pdf = new jsPDF();
-  //     pdf.setFontSize(18);
-  //     pdf.text(20, 20, 'Baby Height and Weight Details');
-  //     const table = document.getElementById('baby-h-w-table');
-  //     pdf.autoTable({ html: table });
-  //     pdf.save('baby_details.pdf');
       $('#loader').show();
 
       $('#baby-h-w-table').show();

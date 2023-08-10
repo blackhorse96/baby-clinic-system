@@ -57,6 +57,7 @@ function getAllNotices() {
         .then(response => response.json())
         .then(data => {
             if (data.success === 1) {
+                noticesDataList = [];
                 noticesDataList = data.data;
                 generateNoticesTableBody(noticesDataList);
             } else {
@@ -68,10 +69,6 @@ function getAllNotices() {
             alert('Error:', error);
             $('#loader').hide();
         });
-}
-
-function deleteNotice(id) {
-    console.log('Button clicked for ID:', id);
 }
 
 function noticeSubmit() {
@@ -156,11 +153,7 @@ function deleteNotice(id) {
         .then(response => response.json())
         .then(data => {
             if (data.success === 1) {
-                // Notice deleted successfully, do something with the response data
-                console.log('Notice deleted successfully:', data);
-            } else {
-                // Failed to delete notice, handle the error
-                console.error('Error deleting notice:', data.message);
+                getAllNotices();
             }
         })
         .catch(error => {

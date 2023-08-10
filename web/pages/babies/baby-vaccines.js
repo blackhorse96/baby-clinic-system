@@ -171,7 +171,7 @@ function deleteBabyVaccine(vaccineId) {
 }
 
 function onClickNewVaccine() {
-  $("#baby-vaccine-status").val(VACCINE_STATUS.PENDING).trigger("change.select2");
+  clearBabyVaccineForm();
 }
 
 function babyVaccineSubmit() {
@@ -246,5 +246,5 @@ function clearBabyVaccineForm() {
   document.getElementById('baby-vaccine-age').value = '';
   document.getElementById('baby-vaccine-name').value = '';
   document.getElementById('baby-vaccine-date').value = '';
-  document.getElementById('baby-vaccine-status').value = null;
+  $("#baby-vaccine-status").val(VACCINE_STATUS.PENDING).trigger("change.select2");
 }

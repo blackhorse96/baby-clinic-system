@@ -51,7 +51,7 @@ try {
     $stmt->close();
 
     // Get all clinics data for the specified baby_id
-    $select_query = "SELECT id, date, visit_type, status FROM babies_clinics WHERE baby_id = ?";
+    $select_query = "SELECT id, date, visit_type, status, reason FROM babies_clinics WHERE baby_id = ?";
     $select_stmt = $conn->prepare($select_query);
     $select_stmt->bind_param("i", $baby_id);
     $select_stmt->execute();

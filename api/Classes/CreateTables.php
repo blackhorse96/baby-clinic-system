@@ -154,6 +154,7 @@ $sql_babies_clinics = "CREATE TABLE IF NOT EXISTS babies_clinics (
     date DATE NOT NULL,
     visit_type VARCHAR(15) NOT NULL,
     status VARCHAR(15) NOT NULL,
+    reason VARCHAR(15) NOT NULL,
     baby_id INT(11),
     FOREIGN KEY (baby_id) REFERENCES babies(id)
 )";

@@ -39,7 +39,6 @@ function babySubmit() {
         alert('Mother not validated');
     }
     else {
-        console.log("Form data is valid. Performing form submission...");
         const genderRadios = document.getElementsByName('gender');
 
         // Function to get the checked value
@@ -67,7 +66,6 @@ function babySubmit() {
             mother_id: motherId
         };
 
-        // Call the createBaby function with the extracted data
         createBaby(formData);
     }
 };
@@ -88,7 +86,6 @@ async function createBaby(babyData) {
         const data = await response.json();
         if (data.success === 1) {
             window.location.reload();
-            alert('Baby created successfully!');
         } else {
             alert('Failed to create baby: ' + response.message);
             $('#loader').hide();

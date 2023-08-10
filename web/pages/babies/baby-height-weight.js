@@ -17,6 +17,8 @@ let babyHeightAndWeightList = [
   { id: -1, date: "", height: 0, weight: 0, baby_id: -1 },
 ];
 
+editHeightWeightId = -1;
+
 function generateBabyHeightWeightTableBody(data) {
   const tableBody = document.getElementById("baby-height-weight-table-body");
   let tableHTML = "";
@@ -43,11 +45,11 @@ function generateBabyHeightWeightTableBody(data) {
                       <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                       <div class="dropdown-menu dropdown-menu-end">
                           <ul class="link-list-opt no-bdr">
-                              <li btn onclick="editBabyHeightWeight(${item.baby_id
+                              <li btn onclick="editBabyHeightWeight(${item.id
       })"><a><em class="icon ni ni-edit"></em><span>Edit Details</span></a></li>
                               
-                              <li btn onclick="deleteBabyHeightWeight(${item.baby_id
-      })"><a><em class="icon ni ni-delete"></em><span>Edit Details</span></a></li>
+                              <li btn onclick="deleteBabyHeightWeight(${item.id
+      })"><a><em class="icon ni ni-trash"></em><span>Delete Baby</span></a></li>
                           </ul>
                       </div>
                   </div>
@@ -87,6 +89,8 @@ function generateBabyHeightWeightTableBody(data) {
 generateBabyHeightWeightTableBody(babyHeightAndWeightList);
 
 function getAllHeightWeight(babyId) {
+  selectedBabyId = babyId;
+
   $('#loader').show();
   const url = `${baseURL}/babies/height-weight/get.php${babyId ? `?baby_id=${babyId}` : ''}`;
   fetch(url, {
@@ -97,7 +101,7 @@ function getAllHeightWeight(babyId) {
   })
     .then(response => response.json())
     .then(data => {
-      // Handle the response here
+      babyHeightAndWeightList = [];
       babyHeightAndWeightList = data.data;
       babyHeightAndWeightList.sort((a, b) => {
         const dateA = new Date(a.date);
@@ -105,7 +109,12 @@ function getAllHeightWeight(babyId) {
         return dateB - dateA;
       });
       generateBabyHeightWeightTableBody(babyHeightAndWeightList);
+      heightArray = [];
+      resetHightChart();
       loadHeightChart();
+
+      weightArray = [];
+      resetWeightChart();
       loadWeightChart();
       $('#loader').hide();
     })
@@ -115,16 +124,94 @@ function getAllHeightWeight(babyId) {
     });
 }
 
-function editBabyHeightWeight() { }
+function editBabyHeightWeight(id) {
+  editHeightWeightId = id;
 
-function deleteBabyHeightWeight() { }
+  babyHeightAndWeightList.forEach(item => {
+    if (item.id === id) {
+      document.getElementById('baby-height-weight-date').value = item.date;
+      document.getElementById('baby-height').value = item.height;
+      document.getElementById('baby-weight').value = item.weight;
+    }
+  });
+
+  $('#baby-height-weight-save').hide();
+  $('#baby-height-weight-update').show();
+
+  $('#createNewHeightWeightPopup').modal('show');
+}
+
+function babyHeightWeightUpdate() {
+  $('#loader').show();
+
+  const url = `${baseURL}/babies/height-weight/update.php`;
+
+  const data = {
+    date: document.getElementById('baby-height-weight-date').value,
+    height: parseFloat(document.getElementById('baby-height').value),
+    weight: parseFloat(document.getElementById('baby-weight').value),
+    id: editHeightWeightId
+  }
+
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success === 1) {
+        getAllHeightWeight(selectedBabyId)
+      }
+      $('#loader').hide();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      $('#loader').hide();
+    });
+
+  $('#baby-height-weight-save').hide();
+  $('#baby-height-weight-update').show();
+  closeHeightWeightModal()
+}
+
+function deleteBabyHeightWeight(id) {
+  $('#loader').show();
+
+  const url = `${baseURL}/babies/height-weight/delete.php`;
+
+  const data = {
+    id
+  };
+
+  fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success === 1) {
+        getAllHeightWeight(selectedBabyId);
+      } else {
+        $('#loader').hide();
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      $('#loader').hide();
+    });
+}
 
 function babyHeightWeightSubmit() {
   const date = document.getElementById('baby-height-weight-date').value;
   const height = parseFloat(document.getElementById('baby-height').value);
   const weight = parseFloat(document.getElementById('baby-weight').value);
 
-  // Call the createHeightWeight function with the extracted data
   createHeightWeight({
     date: date,
     height: height,
@@ -163,10 +250,13 @@ function createHeightWeight(heightWeightData) {
         generateBabyHeightWeightTableBody(babyHeightAndWeightList);
 
         heightArray = [];
+        resetHightChart();
         loadHeightChart();
 
         weightArray = [];
+        resetWeightChart();
         loadWeightChart();
+
         closeHeightWeightModal();
         setTimeout(() => {
           $('#loader').hide();
@@ -185,8 +275,19 @@ function createHeightWeight(heightWeightData) {
     });
 }
 
+function onClickNewHeightWeight() {
+  clearBabyHeightWeightForm();
+}
+
 function closeHeightWeightModal() {
   $('#createNewHeightWeightPopup').modal('hide');
+  clearBabyHeightWeightForm()
+}
+
+function clearBabyHeightWeightForm() {
+  document.getElementById('baby-height-weight-date').value = '';
+  document.getElementById('baby-height').value = null;
+  document.getElementById('baby-weight').value = null;
 }
 
 // Height chart

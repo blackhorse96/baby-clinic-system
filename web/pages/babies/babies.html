@@ -181,7 +181,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewBabyPopup"
-                                                                class="btn btn-primary"><span>+ New Baby</span></a></li>
+                                                                class="btn btn-primary" onclick="onClickNewBaby()"><span>+ New Baby</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -230,7 +230,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewHeightWeightPopup"
-                                                                class="btn btn-primary"><span>+ New </span></a></li>
+                                                                class="btn btn-primary" onclick="onClickNewHeightWeight()"><span>+ New </span></a></li>
                                                         <li class="nk-block-tools-opt"><a onclick="downloadPdf()"
                                                                 class="btn btn-primary"><span>+ Download </span></a></li>
                                                     </ul>
@@ -381,7 +381,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewClinicPopup"
-                                                                class="btn btn-primary"><span>+ New Clinic</span></a></li>
+                                                                class="btn btn-primary" onclick="onClickNewClinic()"><span>+ New Clinic</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -399,6 +399,7 @@
                                                         <th><span class="sub-text">Date</span></th>
                                                         <th><span class="sub-text">Visit Type</span></th>
                                                         <th><span class="sub-text">Status</span></th>
+                                                        <th><span class="sub-text">Reason</span></th>
                                                         <th><span class="sub-text">Actions</span>
                                                         </th>
                                                     </tr>
@@ -486,7 +487,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add New Baby</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="form-validates">
                     <div class="modal-body">
@@ -659,7 +659,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12" style="margin-top: 0px;">
+                            <div id="get-mother-btns" class="col-md-12" style="margin-top: 0px;">
                                 <button type="button" onclick="getMother()" class="btn btn-primary text-end">Get Mother
                                     Details</button>
                                 <button type="button" onclick="resetMother()" class="btn btn-warning text-end">Reset</button>
@@ -681,7 +681,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="babySubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="babySubmit()" id="baby-submit-btn" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -695,7 +695,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add New Height and Weight</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="baby-height-weight-form">
                     <div class="modal-body">
@@ -742,7 +741,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="babyHeightWeightSubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="babyHeightWeightSubmit()" id="baby-height-weight-save" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="babyHeightWeightUpdate()" id="baby-height-weight-update" style="display: none;" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -756,7 +756,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add New Vaccine</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="baby-vaccine-form">
                     <div class="modal-body">
@@ -832,7 +831,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add New Clinic</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="baby-clinic-form">
                     <div class="modal-body">
@@ -852,7 +850,7 @@
                             </div>
                             <div class="col-md-12" style="margin-top: 0px;">
                                 <div class="form-group">
-                                    <label class="form-label">Visit Type</label>
+                                    <label class="form-label">Visit Type*</label>
                                     <div class="form-control-wrap">
                                         <select class="form-select js-select2" required id="baby-clinic-visit">
                                             <option value="BABY_VISIT">Baby Visit</option>
@@ -866,11 +864,25 @@
                             </div>
                             <div class="col-md-12" style="margin-top: 0px;">
                                 <div class="form-group">
-                                    <label class="form-label">Status</label>
+                                    <label class="form-label">Status*</label>
                                     <div class="form-control-wrap">
                                         <select class="form-select js-select2" required id="baby-clinic-status">
                                             <option value="PENDING">Pending</option>
                                             <option value="VISITED">Visited</option>
+                                        </select>
+                                        <div class="error-message" style="display: none; color: red;">This field is
+                                            required</div>
+                                        <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 0px;">
+                                <div class="form-group">
+                                    <label class="form-label">Reason*</label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-select js-select2" required id="baby-clinic-reason">
+                                            <option value="NORMAL">Normal</option>
+                                            <option value="VACCINATION">Vaccination</option>
                                         </select>
                                         <div class="error-message" style="display: none; color: red;">This field is
                                             required</div>
@@ -883,7 +895,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="babyClinicSubmit()" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="babyClinicSubmit()" id="baby-clinic-save" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="updateClinicRecord()" id="baby-clinic-update" style="display: none;" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -897,7 +910,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add New Clinic</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="baby-growth-form">
                     <div class="modal-body">
