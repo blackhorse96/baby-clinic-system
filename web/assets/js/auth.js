@@ -11,7 +11,7 @@ function authLoad() {
     $("#auth").show();
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     console.log(getToken)
     if (getToken) {
         dashboardLoad();
@@ -36,6 +36,7 @@ function next() {
 }
 
 function signUp() {
+    $('#loader').show();
     const url = `${baseURL}/auth/register.php`;
     const userData = {
         name: document.getElementById('register-name').value,
@@ -65,10 +66,14 @@ function signUp() {
             if (data.success === 0) alert(data.message);
             else
                 window.location.reload();
+
+            if (data.success === 1) window.location.reload();
+            $('#loader').hide();
         })
         .catch(error => {
             console.error('Error:', error);
-            alert(error)
+            console.log(error)
+            $('#loader').hide();
         });
 }
 

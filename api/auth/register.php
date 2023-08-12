@@ -8,6 +8,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once __DIR__ . '/../Enums/Role.php';
 require_once __DIR__ . '/../Classes/Database.php';
 
+require '../Services/sendEmail.php';
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -83,6 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                 $insert_mother_stmt = $conn->prepare($insert_mother_query);
                 $insert_mother_stmt->bind_param("ssssssssi", $name, $nic, $birthday, $email, $phone_number, $address, $husband_name, $husband_phone_number, $user_id);
                 $insert_mother_stmt->execute();
+
+                sendEmail($email, $name);
 
                 $returnData = msg(1, 201, 'You have successfully registered.');
             }
