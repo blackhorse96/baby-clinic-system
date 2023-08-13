@@ -9,9 +9,102 @@ getWidgetsData();
 function getWidgetsData() {
     getAdmins();
     getMothers();
-    getBabies(null);
+
+    if (userRole === 'Mother') {
+        $('#loader').show();
+        getBabiesByMotherUserId(UserId).then(data => {
+            document.getElementById('total-babies').innerText = data?.length || 0;
+            getNextClinicDetails(data);
+            $('#loader').hide();
+        });
+    } else getBabies();
+
     getMidwives();
-    // getAllNotices();
+    getAllNotices();
+}
+
+function getNextClinicDetails(data) {
+    console.log(data);
+    let tabsRow = '';
+    let tabsContent = '';
+    data.forEach((item, index) => {
+        let clinics = '';
+        let vaccines = '';
+
+        if(item.clinics.length === 0) {
+            clinics += `<div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-start">
+                                        <div class="me-3">
+                                            <span class="nk-menu-icon"><em
+                                                    class="icon ni ni-calendar"></em></em></span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="font-size-16 mt-2">No Pending Clinics</div>
+                                        </div>
+                                    </div>
+                                    <h4 class="mt-4" id="total-admins"> - </h4>
+                                </div>
+                            </div>
+                        </div>`;
+        } else {
+            item.clinics.map(clinic => {
+                    clinics += `<div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center justify-start">
+                                                <div class="me-3">
+                                                    <span class="nk-menu-icon"><em
+                                                            class="icon ni ni-calendar"></em></em></span>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="font-size-16 mt-2">${clinic.status === CLINIC_VISIT_TYPES.BABY_VISIT ? 'Next Baby Visit Date' : 'Next Midwife Visit Date'}</div>
+                                                </div>
+                                            </div>
+                                            <h4 class="mt-4" id="total-admins">${clinic.date}</h4>
+                                        </div>
+                                    </div>
+                                </div>`;
+            });
+        }
+
+
+        item.vaccines.map(vaccine => {
+            vaccines += `<div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-start">
+                                            <div class="me-3">
+                                                <span class="nk-menu-icon"><em
+                                                        class="icon ni ni-calendar"></em></em></span>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="font-size-16 mt-2">Next Vaccination Date</div>
+                                            </div>
+                                        </div>
+                                        <h4 class="mt-4" id="total-admins">${vaccine.date}</h4>
+                                    </div>
+                                </div>
+                            </div>`;
+        });
+
+        tabsRow += `
+        <li class="nav-item">
+            <a class="nav-link ${index === 0 ? 'active' : ''}" data-bs-toggle="tab" href="#${index}">${item.name}</a>
+        </li>`;
+
+        tabsContent += `<div class="tab-pane ${index === 0 ? 'active' : ''}" id="${index}">
+                            <div class="row">
+                                ${clinics}
+                            </div>
+                        </div>`;
+    });
+
+    
+
+    document.getElementById('next-clinics-tabs').innerHTML = tabsRow;
+    document.getElementById('next-clinics-tabs-content').innerHTML = tabsContent;
 }
 
 async function getAdmins() {
@@ -67,17 +160,17 @@ function getBabies(motherId = null) {
     if (motherId !== null) {
         url += '?mother_id=' + motherId;
     }
-  
+
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        if (data.success === 1) {
-            document.getElementById('total-babies').innerText = data?.babies?.length || 0;
-          $('#loader').hide();
-      }
-    })
-    .catch(error => console.error('Error:', error));
-  }
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                document.getElementById('total-babies').innerText = data?.babies?.length || 0;
+                $('#loader').hide();
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
 
 async function getMidwives() {
     $('#loader').show();
@@ -114,7 +207,7 @@ function getAllNotices() {
         .then(response => response.json())
         .then(data => {
             if (data.success === 1) {
-            document.getElementById('total-notices').innerText = data?.notices?.length || 0;
+                document.getElementById('total-notices').innerText = data?.data?.length || 0;
             } else {
                 console.error('Error getting notices:', data.message);
             }

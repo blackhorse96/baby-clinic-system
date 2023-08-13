@@ -123,7 +123,7 @@ function midwifeSubmit() {
     const birthday = document.getElementById('midwife-birthday').value;
     const phoneNumber = document.getElementById('midwife-phone').value;
     const email = document.getElementById('midwife-email').value;
-    const hospital = document.getElementById('midwife-email').value;
+    const hospital = document.getElementById('midwife-hospital').value;
     const address = document.getElementById('midwife-address').value;
     const username = document.getElementById('midwife-username').value;
     const password = document.getElementById('midwife-password').value;

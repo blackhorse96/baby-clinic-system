@@ -1,18 +1,3 @@
-const CLINIC_STATUS = {
-  VISITED: "VISITED",
-  PENDING: "PENDING",
-};
-
-const CLINIC_REASON = {
-  NORMAL: "NORMAL",
-  VACCINATION: "VACCINATION",
-};
-
-const CLINIC_VISIT_TYPES = {
-  BABY_VISIT: "BABY_VISIT",
-  MIDWIFE_VISIT: "MIDWIFE_VISIT",
-};
-
 editClinicId = -1;
 
 let clinicDataList = [

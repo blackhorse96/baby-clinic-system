@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>Sales Dashboard | babyClinic Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="assets/css/dashlite.css?ver=3.1.2">
+    <link id="skin-default" rel="stylesheet" href="assets/css/theme.css?ver=3.1.2">
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="loader-overlay" id="loader">
+        <div class="spin-loader"></div>
+    </div>
+
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            <div class="nk-sidebar nk-sidebar-fixed is-light" data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-menu-trigger">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+                                class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                            data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                    <div class="nk-sidebar-brand">
+                        <a href="index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-img" src="./images/logo.png" alt="logo">
+                        </a>
+                    </div>
+                </div><!-- sidebar-element -->
+                <div class="nk-sidebar-element nk-sidebar-body">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item">
+                                    <a href="index.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item" id="side-menu-admins">
+                                    <a href="pages/admins/admins.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                        <span class="nk-menu-text">Admins</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item" id="side-menu-midwives">
+                                    <a href="pages/midwives/midwives.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                        <span class="nk-menu-text">Midwives</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/mothers/mothers.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
+                                        <span class="nk-menu-text">Mothers</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/babies/babies.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-happy"></em></span>
+                                        <span class="nk-menu-text">Babies</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/notices/notices.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
+                                        <span class="nk-menu-text">Notices</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="pages/information/information.html" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-list-round"></em></span>
+                                        <span class="nk-menu-text">Information</span>
+                                    </a>
+                                </li><!-- menu-item -->
+                            </ul><!-- menu -->
+                        </div><!-- sidebar-menu -->
+                    </div><!-- sidebar-content -->
+                </div><!-- sidebar-element -->
+            </div>
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ms-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                        class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a href="index.html" class="logo-link">
+                                    <img class="logo-light logo-img" src="./images/logo.png"
+                                        srcset="./images/logo2x.png 2x" alt="logo">
+                                </a>
+                            </div><!-- header-brand -->
+
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    <li class="dropdown user-dropdown">
+                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                                <div class="user-info d-none d-md-block">
+                                                    <div class="user-status" style="color: #fff;" id="user-role">Administrator</div>
+                                                    <div class="user-name dropdown-indicator" style="color: #fff;" id="user-name-head">
+                                                        Sample Name</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        <span id="user-name-letter">AB</span>
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text" id="user-name-title">Sample Name</span>
+                                                        <span class="sub-text" id="user-email">info@example.com</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a onclick="updateProfile()"><em
+                                                                class="icon ni ni-user-alt"></em><span>Edit
+                                                                Profile</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a onclick="signOut()"><em
+                                                                class="icon ni ni-signout"></em><span>Sign
+                                                                Out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                </ul><!-- quick-nav -->
+                            </div><!-- header-tools -->
+                        </div><!-- header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header @e -->
+                <!-- content @s -->
+                <div class="nk-content">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Information</h3>
+                                            <div class="nk-block-des text-soft">
+                                                <p>View information related to baby growth</p>
+                                            </div>
+                                        </div><!-- block-head-content -->
+                                    </div><!-- block-between -->
+                                </div><!-- block-head -->
+                                <div class="nk-block nk-block-lg">
+                                    <div class="card card-bordered card-preview">
+                                        <div class="card-inner">
+                                            <div>
+                                                <div class="row">
+                                                    <div id="carouselExConInd" class="carousel slide w-50 col-md-6 col-sm-12" data-bs-ride="carousel">
+                                                        <ol class="carousel-indicators">
+                                                            <li data-bs-target="#carouselExConInd" data-bs-slide-to="0" class="active"></li>
+                                                            <li data-bs-target="#carouselExConInd" data-bs-slide-to="1"></li>
+                                                            <li data-bs-target="#carouselExConInd" data-bs-slide-to="2"></li>
+                                                        </ol>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img src="./images/informations/1.jpg" class="d-block w-100 h-min-500px h-max-500px" alt="carousel">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="./images/informations/2.jpg" class="d-block w-100 h-min-500px h-max-500px" alt="carousel">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="./images/informations/3.jpg" class="d-block w-100 h-min-500px h-max-500px" alt="carousel">
+                                                            </div>
+                                                        </div>
+                                                        <a class="carousel-control-prev" href="#carouselExConInd" role="button" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#carouselExConInd" role="button" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </a>
+                                                    </div>
+    
+                                                    <div id="carouselExConInd2" class="carousel slide w-50 col-md-6 col-sm-12" data-bs-ride="carousel">
+                                                        <ol class="carousel-indicators">
+                                                            <li data-bs-target="#carouselExConInd2" data-bs-slide-to="0" class="active"></li>
+                                                            <li data-bs-target="#carouselExConInd2" data-bs-slide-to="1"></li>
+                                                            <li data-bs-target="#carouselExConInd2" data-bs-slide-to="2"></li>
+                                                        </ol>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img src="./images/informations/4.jpg" class="d-block w-100 h-min-500px h-max-500px" alt="carousel">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="./images/informations/5.jpg" class="d-block w-100 h-min-500px h-max-500px" alt="carousel">
+                                                            </div>
+                                                            <div class="carousel-item">
+                                                                <img src="./images/informations/6.jpg" class="d-block w-100 h-min-500px h-max-500px" alt="carousel">
+                                                            </div>
+                                                        </div>
+                                                        <a class="carousel-control-prev" href="#carouselExConInd2" role="button" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#carouselExConInd2" role="button" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- .card-preview -->
+                                </div> <!-- nk-block -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                <div class="nk-footer nk-footer-fixed">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright"> &copy; 2022 Baby Clinic System
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+
+    <!-- Update profile popup -->
+    <div class="modal fade" id="updateProfilePopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 40%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="update-title">Update Profile</h5>
+                </div>
+                <div class="profile-form">
+                    <div class="modal-body" style="max-height: 500px; overflow-y: scroll;">
+                        <div class="row g-gs" id="update-profile">
+                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="editProfile()" id="update-save-btn" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./assets/js/bundle.js?ver=3.1.2"></script>
+    <script src="./assets/js/scripts.js?ver=3.1.2"></script>
+    <script src="pages/information/information.js"></script>
+</body>
+
+</html>

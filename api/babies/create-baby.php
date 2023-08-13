@@ -6,6 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 require_once __DIR__ . '/../Classes/Database.php';
+require './default-data.php';
 
 $servername = "localhost";
 $username = "root";
@@ -75,6 +76,24 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $insert_baby_stmt = $conn->prepare($insert_baby_query);
             $insert_baby_stmt->bind_param("sssddssssissi", $name, $birthday, $birth_time, $birth_weight, $birth_height, $gender, $register_date, $moh_division, $division, $apgar_score, $hospital, $health_division, $mother_id);
             $insert_baby_stmt->execute();
+
+            $baby_id = $insert_baby_stmt->insert_id;
+            $default_vaccines = $preCreateVaccines;
+            $default_growths = $default_growths_data;
+
+            foreach ($default_vaccines as $vaccine_data) {
+                $insert_vaccine_query = "INSERT INTO babies_vaccines (age, vaccine, date, status, baby_id) VALUES (?, ?, ?, ?, ?)";
+                $insert_vaccine_stmt = $conn->prepare($insert_vaccine_query);
+                $insert_vaccine_stmt->bind_param("ssssi", $vaccine_data['age'], $vaccine_data['vaccine'], $vaccine_data['date'], $vaccine_data['status'], $baby_id);
+                $insert_vaccine_stmt->execute();
+            }
+
+            foreach ($default_growths as $growth_data) {
+                $insert_growth_query = "INSERT INTO babies_growths (detail, age_gap, baby_id) VALUES (?, ?, ?)";
+                $insert_growth_stmt = $conn->prepare($insert_growth_query);
+                $insert_growth_stmt->bind_param("ssi", $growth_data['detail'], $growth_data['age_gap'], $baby_id);
+                $insert_growth_stmt->execute();
+            }
 
             $returnData = msg(1, 201, 'Baby created successfully.');
         } catch (Exception $e) {

@@ -1,18 +1,282 @@
+const CLINIC_STATUS = {
+    VISITED: "VISITED",
+    PENDING: "PENDING",
+};
+
+const CLINIC_REASON = {
+    NORMAL: "NORMAL",
+    VACCINATION: "VACCINATION",
+};
+
+const CLINIC_VISIT_TYPES = {
+    BABY_VISIT: "BABY_VISIT",
+    MIDWIFE_VISIT: "MIDWIFE_VISIT",
+};
+
 const baseURL = 'http://localhost/baby-clinic-system/api';
 const getToken = localStorage.getItem('token');
 const UserId = localStorage.getItem('userId');
 const userRole = localStorage.getItem('userRole');
 
+let userDetails;
+
 $(document).ready(function () {
-    if(userRole === 'Mother') {
+    if (userRole === 'Mother') {
         $('#side-menu-admins').hide();
         $('#side-menu-midwives').hide();
     }
+
+    getProfile();
 });
 
 function signOut() {
     localStorage.clear();
     window.location.reload();
+}
+
+function updateProfile() {
+    let profileForm = '';
+    let usernamePassword = '';
+
+    profileForm = ` <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Name*</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" placeholder="Enter Name" id="update-name"
+                                    required value="${userDetails.name}">
+                                <div class="error-message" style="display: none; color: red;">This field is
+                                    required</div>
+                                <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 0px;">
+                        <div class="form-group">
+                            <label class="form-label">NIC*</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" placeholder="Enter NIC" id="update-nic"
+                                    required value="${userDetails.nic}">
+                                <div class="error-message" style="display: none; color: red;">This field is
+                                    required</div>
+                                <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 0px;">
+                        <div class="form-group">
+                            <label class="form-label">Birthday*</label>
+                            <div class="form-control-wrap">
+                                <input type="date" class="form-control" placeholder="Enter Birthday" id="update-birthday"
+                                    required value="${userDetails.birthday}">
+                                <div class="error-message" style="display: none; color: red;">This field is
+                                    required</div>
+                                <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 0px;">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number*</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="update-phone"
+                                    required value="${userDetails.phone_number}">
+                                <div class="error-message" style="display: none; color: red;">This field is
+                                    required</div>
+                                <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 0px;">
+                        <div class="form-group">
+                            <label class="form-label">Email*</label>
+                            <div class="form-control-wrap">
+                                <input type="email" class="form-control" placeholder="Enter Email" id="update-email"
+                                    required value="${userDetails.email}">
+                                <div class="error-message" style="display: none; color: red;">This field is
+                                    required</div>
+                                <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 0px;">
+                        <div class="form-group">
+                            <label class="form-label">Address*</label>
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control" placeholder="Enter Address" id="update-address"
+                                    required value="${userDetails.address}">
+                                <div class="error-message" style="display: none; color: red;">This field is
+                                    required</div>
+                                <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                            </div>
+                        </div>
+                    </div>`;
+
+    if (userRole === 'Midwife') profileForm += `<div class="col-md-12" style="margin-top: 0px;">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Working Hospital*</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" placeholder="Enter Working Hospital" id="update-hospital"
+                                                                required value="${userDetails?.hospital}">
+                                                            <div class="error-message" style="display: none; color: red;">This field is
+                                                                required</div>
+                                                            <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>`;
+    else if (userRole === 'Mother') profileForm += `<div class="col-md-12" style="margin-top: 0px;">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Husband Name</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" class="form-control" placeholder="Enter Husband Name" id="update-husband-name"
+                                                                value="${userDetails?.husband_name}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" style="margin-top: 0px;">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Husband Phone</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" class="form-control" placeholder="Enter Husband Phone" id="update-husband-phone"
+                                                                value="${userDetails?.husband_phone_number}">
+                                                            </div>
+                                                        </div>
+                                                    </div>`;
+
+    usernamePassword = `<div class="col-md-12" style="margin-top: 0px;">
+                            <div class="form-group">
+                                <label class="form-label">Username*</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" placeholder="Enter Username" id="update-username"
+                                        required value="${userDetails.username}">
+                                    <div class="error-message" style="display: none; color: red;">This field is
+                                        required</div>
+                                    <div class="error-message-placeholder" style="opacity: 0;">.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 0px;">
+                            <div class="form-group">
+                                <label class="form-label">Password*</label>
+                                <div class="form-control-wrap">
+                                    <input type="password" class="form-control" placeholder="Enter Password" id="update-password">
+                                    <div style="font-size: smaller; font-style: italic;">Leave empty to keep current password.</div>
+                                </div>
+                            </div>
+                        </div>`;
+
+    profileForm += usernamePassword;
+
+    document.getElementById('update-profile').innerHTML = profileForm;
+    $('#updateProfilePopup').modal('show');
+
+}
+
+function editProfile() {
+    const url = `${baseURL}/users/update-profile.php`;
+
+    let userData = {
+        user_id: UserId,
+        name: document.getElementById('update-name').value,
+        nic: document.getElementById('update-nic').value,
+        birthday: document.getElementById('update-birthday').value,
+        phone_number: document.getElementById('update-phone').value,
+        email: document.getElementById('update-email').value,
+        address: document.getElementById('update-address').value,
+        username: document.getElementById('update-username').value,
+        password: document.getElementById('update-password').value
+    }
+
+    if (userRole === 'Midwife') {
+        userData = {
+            ...userData,
+            hospital: document.getElementById('update-hospital').value
+        }
+    } else if (userRole === 'Mother') {
+        userData = {
+            ...userData,
+            husband_name: document.getElementById('update-husband-name').value,
+            husband_phone_number: document.getElementById('update-husband-phone').value
+        }
+    }
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                window.location.reload();
+            } else {
+                alert('Profile update failed:', data.message);
+            }
+        })
+        .catch(error => {
+            alert('An error occurred:', error);
+        });
+
+    $('#updateProfilePopup').modal('hide');
+}
+
+function getProfile() {
+    return fetch(`${baseURL}/users/get-profile.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user_id: UserId })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            userDetails = data.data;
+            document.getElementById('user-role').innerText = userRole;
+            document.getElementById('user-name-head').innerText = data.data.name;
+            document.getElementById('user-name-letter').innerText = data.data.name.charAt(0);
+            document.getElementById('user-name-title').innerText = data.data.name;
+            document.getElementById('user-email').innerText = data.data.email;
+            return data;
+        })
+        .catch(error => {
+            // Handle errors here
+            console.error('Error fetching profile:', error);
+            throw error;
+        });
+}
+
+function getBabiesByMotherUserId(userId) {
+    $('#loader').show();
+    const url = `${baseURL}/babies/get-babies-by-mother-user-id.php`;
+    const requestData = {
+        user_id: userId
+    };
+
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 1) {
+                $('#loader').hide();
+                return data.data;
+            } else {
+                alert(data.message);
+                $('#loader').hide();
+                return [];
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            $('#loader').hide();
+            return [];
+        });
 }
 
 
@@ -110,7 +374,7 @@ function signOut() {
                 self.closest("li").addClass('active current-page').parents().closest("li").addClass("active current-page");
                 self.closest("li").children('.nk-menu-sub').css('display', 'block');
                 self.parents().closest("li").children('.nk-menu-sub').css('display', 'block');
-                this.scrollIntoView({ block: "start"});
+                this.scrollIntoView({ block: "start" });
             } else {
                 self.closest("li").removeClass('active current-page').parents().closest("li:not(.current-page)").removeClass("active");
             }
@@ -181,7 +445,7 @@ function signOut() {
 
         $doc.on('mouseup', function (e) {
             if (toggleCurrent) {
-                var $toggleCurrent = $(toggleCurrent), currentTarget =  $(toggleCurrent).data('target'), $contentCurrent=$(`[data-content="${currentTarget}"]`), $dpd = $('.datepicker-dropdown'), $tpc = $('.ui-timepicker-container'), $mdl = $('.modal');
+                var $toggleCurrent = $(toggleCurrent), currentTarget = $(toggleCurrent).data('target'), $contentCurrent = $(`[data-content="${currentTarget}"]`), $dpd = $('.datepicker-dropdown'), $tpc = $('.ui-timepicker-container'), $mdl = $('.modal');
                 if (!$toggleCurrent.is(e.target) && $toggleCurrent.has(e.target).length === 0 && !$contentCurrent.is(e.target) && $contentCurrent.has(e.target).length === 0
                     && $(e.target).closest('.select2-container').length === 0 && !$dpd.is(e.target) && $dpd.has(e.target).length === 0
                     && !$tpc.is(e.target) && $tpc.has(e.target).length === 0 && !$mdl.is(e.target) && $mdl.has(e.target).length === 0) {
@@ -353,9 +617,9 @@ function signOut() {
     };
 
     //On change validation for third party plugins
-    NioApp.Validate.OnChange  = function (elm) {
-        $(elm).on('change', function() { 
-            $(this).valid(); 
+    NioApp.Validate.OnChange = function (elm) {
+        $(elm).on('change', function () {
+            $(this).valid();
         });
     }
 
@@ -758,26 +1022,26 @@ function signOut() {
     // Stepper @v1.0
     NioApp.Stepper = function (elm, opt) {
         const element = document.querySelectorAll(elm);
-        if(element.length > 0){
+        if (element.length > 0) {
             element.forEach(function (item, index) {
                 let def = {
-                        selectors : {
-                            nav : 'stepper-nav',
-                            progress: 'stepper-progress',
-                            content : 'stepper-steps',
-                            prev : 'step-prev',
-                            next : 'step-next',
-                            submit : 'step-submit',
-                        },
-                        classes: {
-                            nav_current : 'current',
-                            nav_done : 'done',
-                            step_active : 'active',
-                            step_done : 'done',
-                            active_step : 'active',
-                        },
-                        current_step : 1,
-                    }, attr = (opt) ? extend(def, opt) : def;
+                    selectors: {
+                        nav: 'stepper-nav',
+                        progress: 'stepper-progress',
+                        content: 'stepper-steps',
+                        prev: 'step-prev',
+                        next: 'step-next',
+                        submit: 'step-submit',
+                    },
+                    classes: {
+                        nav_current: 'current',
+                        nav_done: 'done',
+                        step_active: 'active',
+                        step_done: 'done',
+                        active_step: 'active',
+                    },
+                    current_step: 1,
+                }, attr = (opt) ? extend(def, opt) : def;
 
                 NioApp.Custom.Stepper(item, attr);
                 NioApp.Validate.OnChange('.js-select2');
@@ -793,7 +1057,7 @@ function signOut() {
 
     // Tagify @v1.0.1
     NioApp.Tagify = function (elm, opt) {
-        if($(elm).exists() && typeof($.fn.tagify) === 'function'){
+        if ($(elm).exists() && typeof ($.fn.tagify) === 'function') {
             var def, attr = (opt) ? extend(def, opt) : def;
             $(elm).tagify(attr);
         }

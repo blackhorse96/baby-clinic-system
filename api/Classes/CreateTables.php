@@ -208,7 +208,7 @@ $stmt->execute();
 $userId = $stmt->insert_id;
 
 // Added Super admin user details
-$name = "Super";
+$name = "Super Admin";
 $nic = "123456789V";
 $birthday = "1990-01-01";
 $email = "super@example.com";

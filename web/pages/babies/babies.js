@@ -5,6 +5,13 @@ $(document).ready(function () {
   if (!getToken) {
       window.location.href = 'index.html';
   }
+
+  if(userRole === 'Mother') {
+    getBabiesByMotherUserId(UserId).then(data => {
+      babiesDataList = data;
+      generateBabiesTableBody(data);
+    })
+  } else getBabies();
 });
 
 let babiesDataList = [
@@ -18,7 +25,6 @@ let babiesDataList = [
 ];
 
 generateBabiesTableBody(babiesDataList);
-getBabies();
 
 function generateBabiesTableBody(data) {
   const tableBody = document.getElementById("babies-table-body");

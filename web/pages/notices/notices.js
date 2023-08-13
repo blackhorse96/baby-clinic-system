@@ -4,6 +4,13 @@ let noticesDataList = [
     { id: 1, title: '', date: '', content: '' },
 ];
 
+$(document).ready(function () {
+    console.log(getToken)
+    if (!getToken) {
+        window.location.href = 'index.html';
+    }
+});
+
 function generateNoticesTableBody(data) {
     const tableBody = document.getElementById('notices-table-body');
     let tableHTML = '';

@@ -118,8 +118,8 @@
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
-                                                    <div class="user-status" style="color: #fff;">Administrator</div>
-                                                    <div class="user-name dropdown-indicator" style="color: #fff;">
+                                                    <div class="user-status" style="color: #fff;" id="user-role">Administrator</div>
+                                                    <div class="user-name dropdown-indicator" style="color: #fff;" id="user-name-head">
                                                         Sample Name</div>
                                                 </div>
                                             </div>
@@ -128,18 +128,18 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar">
-                                                        <span>AB</span>
+                                                        <span id="user-name-letter">AB</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">Sample Name</span>
-                                                        <span class="sub-text">info@softnio.com</span>
+                                                        <span class="lead-text" id="user-name-title">Sample Name</span>
+                                                        <span class="sub-text" id="user-email">info@example.com</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="user-profile-regular.html"><em
-                                                                class="icon ni ni-user-alt"></em><span>View
+                                                    <li><a onclick="updateProfile()"><em
+                                                                class="icon ni ni-user-alt"></em><span>Edit
                                                                 Profile</span></a></li>
                                                 </ul>
                                             </div>
@@ -257,6 +257,11 @@
                                         </div><!-- .col -->
                                     </div><!-- .row -->
                                 </div><!-- block -->
+
+                                <div class="nk-block">
+                                    <ul class="nav nav-tabs" id="next-clinics-tabs"></ul>
+                                    <div class="tab-content" id="next-clinics-tabs-content"></div>
+                                </div>
 
                                 <div class="nk-block mb-5">
                                     <div class="row g-gs">
@@ -463,6 +468,30 @@
         </div>
     </div>
     <!-- app-root @e -->
+
+    <!-- Update profile popup -->
+    <div class="modal fade" id="updateProfilePopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 40%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="update-title">Update Profile</h5>
+                </div>
+                <div class="profile-form">
+                    <div class="modal-body" style="max-height: 500px; overflow-y: scroll;">
+                        <div class="row g-gs" id="update-profile">
+                            
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="editProfile()" id="update-save-btn" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- JavaScript -->
     <script src="./assets/js/bundle.js?ver=3.1.2"></script>
     <script src="./assets/js/scripts.js?ver=3.1.2"></script>
