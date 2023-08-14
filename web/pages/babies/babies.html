@@ -11,7 +11,7 @@
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
-    <title>Sales Dashboard | babyClinic Admin Template</title>
+    <title>Baby clinic system</title>
     <!-- StyleSheets  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashlite.css?ver=3.1.2">
@@ -63,7 +63,7 @@
                                         <span class="nk-menu-text">Midwives</span>
                                     </a>
                                 </li><!-- menu-item -->
-                                <li class="nk-menu-item">
+                                <li class="nk-menu-item" id="side-menu-mothers">
                                     <a href="pages/mothers/mothers.html" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users"></em></em></span>
                                         <span class="nk-menu-text">Mothers</span>
@@ -182,7 +182,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewBabyPopup"
-                                                                class="btn btn-primary" onclick="onClickNewBaby()"><span>+ New Baby</span></a></li>
+                                                                class="btn btn-primary" onclick="onClickNewBaby()" id="new-baby"><span>+ New Baby</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -231,7 +231,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewHeightWeightPopup"
-                                                                class="btn btn-primary" onclick="onClickNewHeightWeight()"><span>+ New </span></a></li>
+                                                                class="btn btn-primary" onclick="onClickNewHeightWeight()" id="new-h-w"><span>+ New </span></a></li>
                                                         <li class="nk-block-tools-opt"><a onclick="downloadPdf()"
                                                                 class="btn btn-primary"><span>+ Download </span></a></li>
                                                     </ul>
@@ -294,9 +294,10 @@
 
                                             <!-- This is for download as a PDF -->
                                             <div id="baby-h-w-table" style="display: none;">
-                                                <h1 style="text-align: center; margin-bottom: 50px;">Baby Details</h1>
+                                                <h3 style="text-align: center; margin-bottom: 50px;">Baby Height and Weight Details</h3>
                                                 <div class="row">
-
+                                                    <div class="data-container" id="baby-details">
+                                                      </div>
                                                 </div>
                                                 <table class="table table-tranx">
                                                     <thead>
@@ -334,6 +335,8 @@
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal" onclick="onClickNewVaccine()"
                                                                 data-bs-target="#createNewVaccinePopup"
                                                                 class="btn btn-primary" id="create-new-vaccine-btn"><span>+ New Vaccine</span></a></li>
+                                                        <li class="nk-block-tools-opt"><a onclick="downloadVaccinePdf()"
+                                                            class="btn btn-primary"><span>+ Download </span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -359,6 +362,27 @@
                                                 <tbody id="baby-vaccine-table-body">
                                                 </tbody>
                                             </table>
+
+                                            <!-- This is for download as a PDF -->
+                                            <div id="baby-vaccine-table-pdf" style="display: none;">
+                                                <h3 style="text-align: center; margin-bottom: 50px;">Baby Vaccine Details</h3>
+                                                <div class="row">
+                                                    <div class="data-container" id="baby-details-for-vaccine-pdf">
+                                                      </div>
+                                                </div>
+                                                <table class="table table-tranx">
+                                                    <thead>
+                                                        <tr class="tb-tnx-head">
+                                                            <th><span class="sub-text">#</span></th>
+                                                            <th><span class="sub-text">Age</span></th>
+                                                            <th><span class="sub-text">Type of Vaccine</span></th>
+                                                            <th><span class="sub-text">Date</span></th>
+                                                            <th><span class="sub-text">Status</span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="baby-vaccine-table-body-pdf"></tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div><!-- .card-preview -->
                                 </div> <!-- nk-block -->
@@ -382,7 +406,7 @@
                                                     <ul class="nk-block-tools g-3">
                                                         <li class="nk-block-tools-opt"><a data-bs-toggle="modal"
                                                                 data-bs-target="#createNewClinicPopup"
-                                                                class="btn btn-primary" onclick="onClickNewClinic()"><span>+ New Clinic</span></a></li>
+                                                                class="btn btn-primary" onclick="onClickNewClinic()" id="new-clinic"><span>+ New Clinic</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>

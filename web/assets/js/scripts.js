@@ -24,6 +24,26 @@ $(document).ready(function () {
     if (userRole === 'Mother') {
         $('#side-menu-admins').hide();
         $('#side-menu-midwives').hide();
+        $('#side-menu-mothers').hide();
+
+        $('#total-admins-w').hide();
+        $('#total-midwives-w').hide();
+        $('#total-mothers-w').hide();
+
+        $('#new-baby').hide();
+        $('#new-h-w').hide();
+        $('#new-clinic').hide();
+        $('#new-notice').hide();
+        $('#create-new-vaccine-btn').hide();
+    } else if(userRole === 'Midwife') {
+        $('#side-menu-admins').hide();
+        $('#side-menu-midwives').hide();
+
+        $('#total-admins-w').hide();
+        $('#total-midwives-w').hide();
+    } else if(userRole === 'Admin') {
+        $('#side-menu-admins').hide();
+        $('#total-admins-w').hide();
     }
 
     getProfile();
@@ -129,6 +149,7 @@ function updateProfile() {
                                                             <div class="form-control-wrap">
                                                                 <input type="text" class="form-control" placeholder="Enter Husband Name" id="update-husband-name"
                                                                 value="${userDetails?.husband_name}">
+                                                            <div class="error-message-placeholder" style="opacity: 0;">.</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -138,6 +159,7 @@ function updateProfile() {
                                                             <div class="form-control-wrap">
                                                                 <input type="text" class="form-control" placeholder="Enter Husband Phone" id="update-husband-phone"
                                                                 value="${userDetails?.husband_phone_number}">
+                                                            <div class="error-message-placeholder" style="opacity: 0;">.</div>
                                                             </div>
                                                         </div>
                                                     </div>`;

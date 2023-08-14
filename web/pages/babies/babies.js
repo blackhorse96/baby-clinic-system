@@ -277,9 +277,48 @@ function downloadPdf() {
 
       $('#baby-h-w-table').show();
       const element = document.getElementById('baby-h-w-table');
+      let babyDetails = document.getElementById('baby-details');
+
+      let selectedBaby = null;
+      babiesDataList.map(item => {
+        if(item.id === babyId) {
+          selectedBaby = item;
+        }
+      })
+
+      babyDetails.innerHTML = `<div class="left-column">
+                                  <div class="data-row">
+                                    <div class="key">Name:</div>
+                                    <div class="value">${selectedBaby.name}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Birthday:</div>
+                                    <div class="value">${selectedBaby.birthday}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Gender:</div>
+                                    <div class="value">${selectedBaby.gender}</div>
+                                  </div>
+                                </div>
+                                
+                                <div class="right-column">
+                                  <div class="data-row">
+                                    <div class="key">Mother Name:</div>
+                                    <div class="value">${selectedBaby.mother.name}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Register Date:</div>
+                                    <div class="value">${selectedBaby.register_date}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Hospital:</div>
+                                    <div class="value">${selectedBaby.hospital}</div>
+                                  </div>
+                                </div>`;
+
       const opt = {
         margin:       10,
-        filename:     'baby_details.pdf',
+        filename:     'baby_height_weight_details.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -290,6 +329,67 @@ function downloadPdf() {
 
       setTimeout(() => {
         $('#baby-h-w-table').hide();
+        $('#loader').hide();
+      }, 1000);
+}
+
+function downloadVaccinePdf() {
+      $('#loader').show();
+
+      $('#baby-vaccine-table-pdf').show();
+      const element = document.getElementById('baby-vaccine-table-pdf');
+      let babyDetails = document.getElementById('baby-details-for-vaccine-pdf');
+
+      let selectedBaby = null;
+      babiesDataList.map(item => {
+        if(item.id === babyId) {
+          selectedBaby = item;
+        }
+      })
+
+      babyDetails.innerHTML = `<div class="left-column">
+                                  <div class="data-row">
+                                    <div class="key">Name:</div>
+                                    <div class="value">${selectedBaby.name}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Birthday:</div>
+                                    <div class="value">${selectedBaby.birthday}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Gender:</div>
+                                    <div class="value">${selectedBaby.gender}</div>
+                                  </div>
+                                </div>
+                                
+                                <div class="right-column">
+                                  <div class="data-row">
+                                    <div class="key">Mother Name:</div>
+                                    <div class="value">${selectedBaby.mother.name}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Register Date:</div>
+                                    <div class="value">${selectedBaby.register_date}</div>
+                                  </div>
+                                  <div class="data-row">
+                                    <div class="key">Hospital:</div>
+                                    <div class="value">${selectedBaby.hospital}</div>
+                                  </div>
+                                </div>`;
+
+      const opt = {
+        margin:       10,
+        filename:     'baby_vaccine_details.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Generate the PDF using html2pdf.js
+      html2pdf().set(opt).from(element).save();
+
+      setTimeout(() => {
+        $('#baby-vaccine-table-pdf').hide();
         $('#loader').hide();
       }, 1000);
 }

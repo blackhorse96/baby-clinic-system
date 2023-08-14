@@ -60,6 +60,32 @@ function generateBabyVaccineTableBody(data) {
   });
 
   tableBody.innerHTML = tableHTML;
+
+  const tableBodyPdf = document.getElementById("baby-vaccine-table-body-pdf");
+  let tableHTMLPdf = "";
+  data?.forEach((item, index) => {
+    tableHTMLPdf += `
+      <tr >
+      <td style="text-align: center;">
+          <span >${index + 1}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.age}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.vaccine}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.date}</span>
+      </td>
+      <td style="text-align: center;">
+          <span>${item.status}</span>
+      </td>
+  </tr>
+      `;
+  });
+
+  tableBodyPdf.innerHTML = tableHTMLPdf;
 }
 
 generateBabyVaccineTableBody(vaccineDataList);

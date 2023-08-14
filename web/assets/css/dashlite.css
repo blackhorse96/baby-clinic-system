@@ -41543,4 +41543,40 @@ a {
   cursor: pointer !important;
 }
 
+.data-container {
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  margin-bottom: 20px;
+}
+
+.left-column {
+ margin-right: 30px; 
+}
+
+.right-column {
+ margin-left: 30px; 
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+}
+
+.data-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.key {
+  flex: 1;
+  font-weight: bold;
+  text-align: left;
+}
+
+.value {
+  flex: 1;
+  text-align: right;
+}
+
 /*! END @iO */
