@@ -75,9 +75,10 @@ function generateBabiesTableBody(data) {
                                 item.id
                               })"><a><em class="icon ni ni-eye"></em><span>View Growth Details</span></a></li>
 
-                              <li btn onclick="deleteBaby(${
+                              ${userRole !== 'Mother' ? `<li btn onclick="deleteBaby(${
                                 item.id
-                              })"><a><em class="icon ni ni-trash"></em><span>Delete Baby</span></a></li>
+                              })"><a><em class="icon ni ni-trash"></em><span>Delete Baby</span></a></li>` : ''}
+                              
                           </ul>
                       </div>
                   </div>
@@ -113,11 +114,12 @@ function getBabies(motherId = null) {
 
 function deleteBaby(babyId) {
   $('#loader').show();
-  let url = `${baseURL}/babies/delete-baby.php`;
+  let url = `${baseURL}/babies/baby-delete.php`;
   fetch(url, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Your-Optional-Authentication-Token'
       },
       body: JSON.stringify({ baby_id: babyId }),
   })

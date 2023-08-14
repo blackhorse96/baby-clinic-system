@@ -42,7 +42,7 @@ function generateBabyGrowthTableBody(data) {
                         <div class="dropdown-menu dropdown-menu-end">
                             <ul class="link-list-opt no-bdr">
                                 <li btn onclick="editBabyGrowth(${item.id
-      })"><a><em class="icon ni ni-edit"></em><span>Edit Vaccine</span></a></li>
+      })"><a><em class="icon ni ni-edit"></em><span>Edit Growth</span></a></li>
                                 ${userRole !== 'Mother' ? `<li btn onclick="deleteBabyGrowth(${item.id})"><a><em class="icon ni ni-delete"></em><span>Delete</span></a></li>` : ''}
                                 
                             </ul>

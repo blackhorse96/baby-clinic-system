@@ -149,8 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
                     $data->email,
                     $data->phone_number,
                     $data->address,
-                    $data->husband_name ?? '',
-                    $data->husband_phone_number ?? '',
+                    $data->husband_name,
+                    $data->husband_phone_number,
                     $user_id
                 );
                 $stmt->execute();

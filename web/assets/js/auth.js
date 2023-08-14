@@ -31,11 +31,33 @@ function switchToSignUp() {
 }
 
 function next() {
+    const name = document.getElementById('register-name').value;
+    const nic = document.getElementById('register-nic').value;
+    const birthday = document.getElementById('register-birthday').value;
+    const email = document.getElementById('register-email').value;
+    const phone = document.getElementById('register-phone').value;
+
+    // Perform validation checks here
+    if (!name || !nic || !birthday || !email || !phone) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
     $("#first").hide();
     $("#second").show();
 }
 
 function signUp() {
+    const address = document.getElementById('register-address').value;
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+
+    // Perform validation checks here
+    if (!address || !username || !password) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
     $('#loader').show();
     const url = `${baseURL}/auth/register.php`;
     const userData = {

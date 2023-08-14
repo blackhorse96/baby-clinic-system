@@ -59,7 +59,7 @@ function getNextClinicDetails(data) {
                                                             class="icon ni ni-calendar"></em></em></span>
                                                 </div>
                                                 <div class="flex-1">
-                                                    <div class="font-size-16 mt-2">${clinic.status === CLINIC_VISIT_TYPES.BABY_VISIT ? 'Next Baby Visit Date' : 'Next Midwife Visit Date'}</div>
+                                                    <div class="font-size-16 mt-2">${clinic.visit_type === CLINIC_VISIT_TYPES.BABY_VISIT ? 'Next Baby Visit Date' : 'Next Midwife Visit Date'}</div>
                                                 </div>
                                             </div>
                                             <h4 class="mt-4" id="total-admins">${clinic.date}</h4>

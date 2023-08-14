@@ -35,18 +35,7 @@ function generateTableBody(data) {
           <span>${item.email}</span>
       </td>
       <td style="text-align: center;">
-          <ul >
-              <li>
-                  <div class="drodown">
-                      <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                          <ul class="link-list-opt no-bdr">
-                              <li btn onclick="deleteMother(${item.id})"><a><em class="icon ni ni-trash"></em><span>Delete Mother</span></a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </li>
-          </ul>
+      <span>${item.birthday}</span>
       </td>
   </tr>
       `;

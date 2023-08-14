@@ -39,22 +39,23 @@ function generateBabyHeightWeightTableBody(data) {
           <span>${item.weight}</span>
       </td>
       <td style="text-align: center;">
-          <ul >
-              <li>
-                  <div class="drodown">
-                      <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                          <ul class="link-list-opt no-bdr">
-                              <li btn onclick="editBabyHeightWeight(${item.id
-      })"><a><em class="icon ni ni-edit"></em><span>Edit Details</span></a></li>
-                              
-                              <li btn onclick="deleteBabyHeightWeight(${item.id
-      })"><a><em class="icon ni ni-trash"></em><span>Delete Baby</span></a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </li>
-          </ul>
+      ${userRole !== 'Mother' ? `<ul >
+      <li>
+          <div class="drodown">
+              <a class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+              <div class="dropdown-menu dropdown-menu-end">
+                  <ul class="link-list-opt no-bdr">
+                      <li btn onclick="editBabyHeightWeight(${item.id
+})"><a><em class="icon ni ni-edit"></em><span>Edit Details</span></a></li>
+                      
+                      <li btn onclick="deleteBabyHeightWeight(${item.id
+})"><a><em class="icon ni ni-trash"></em><span>Delete Baby</span></a></li>
+                  </ul>
+              </div>
+          </div>
+      </li>
+  </ul>` : '-'}
+          
       </td>
   </tr>
       `;

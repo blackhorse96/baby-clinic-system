@@ -35,6 +35,7 @@ $(document).ready(function () {
         $('#new-clinic').hide();
         $('#new-notice').hide();
         $('#create-new-vaccine-btn').hide();
+
     } else if(userRole === 'Midwife') {
         $('#side-menu-admins').hide();
         $('#side-menu-midwives').hide();

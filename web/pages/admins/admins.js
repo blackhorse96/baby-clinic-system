@@ -177,21 +177,3 @@ function adminSubmit() {
         });
 }
 
-async function getAdminByUserId(userId) {
-    try {
-        const response = await fetch(`http://your-api-url/get-admin.php?user_id=${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Your-Optional-Authentication-Token'
-            }
-        });
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error getting admin by user_id:', error);
-        return { success: 0, status: 500, message: 'Internal Server Error' };
-    }
-}
-
